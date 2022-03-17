@@ -1,18 +1,18 @@
 public class Address
 {
-    private String AddressLine1;
-    private String AddressLine2;
-    private String City;
-    private String State;
-    private int ZIP;
-    private String Country;
+    private String addressLine1;
+    private String addressLine2;
+    private String city;
+    private String state;
+    private int zip;
+    private String country;
 
-    public Address(String AL1,String AL2, String CT, int z, String C)
+    public Address(String addressLine1,String addressLine2, String city, String state, int zip, String country)
     {
-        AddressLine1 = AL1;
-        AddressLine2 = AL2;
-        City = CT;
-        ZIP = z;
-        Country = C;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.zip = zip;
+        this.country = country;
     }
 }

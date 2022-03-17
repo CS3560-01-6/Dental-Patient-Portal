@@ -5,7 +5,7 @@ public class PaymentInformation
     private String ExpDate;
     private int SecurityCode;
 
-    Public PaymentInformation(int CN, String NOC, String ED, int SC)
+    public PaymentInformation(int CN, String NOC, String ED, int SC)
     {
         CardNumber = CN;
         NameOnCard = NOC;
