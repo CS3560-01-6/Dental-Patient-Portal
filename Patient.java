@@ -1,18 +1,19 @@
-import Address;
 public class Patient
 {
-    private String FirstName;
-    private String LastName;
-    private String DateOFBirth;
-    private String Email;
-    private Address Address;
-    private int InsuranceID;
+    private String firstName;
+    private String lastName;
+    private String dateOfBirth;
+    private String email;
+    private int insuranceID;
+    private Address address;
 
-    public Patient(String FN, String LN, String DOB, String EM)
+    public Patient(String firstName, String lastName, String dateOfBirth, String email, int insuranceID, Address address)
     {
-        FirstName = FN;
-        LastName = LN;
-        DateOFBirth = DOB;
-        Email = EM;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.insuranceID = insuranceID;
+        this.address = address;
     }
 }

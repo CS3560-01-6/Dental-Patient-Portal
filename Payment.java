@@ -1,8 +1,15 @@
-import Treatment;
-abstract class Payment
+public class Payment
 {
-    private String Data;
-    private int Amount;
-    private String PaymentStatus;
-    private Treatment Service;
+    private String data;
+    private int amount;
+    private boolean paidStatus;
+    private Treatment service;
+
+    public Payment(String data, int amount, boolean paidStatus, Treatment service)
+    {
+        this.data = data;
+        this.amount = amount;
+        this.paidStatus = paidStatus;
+        this.service = service;
+    }
 }

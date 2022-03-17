@@ -1,15 +1,15 @@
 public class PaymentInformation
 {
-    private int CardNumber;
-    private String NameOnCard;
-    private String ExpDate;
-    private int SecurityCode;
+    private int cardNumber;
+    private String nameOnCard;
+    private String expDate;
+    private int securityCode;
 
-    public PaymentInformation(int CN, String NOC, String ED, int SC)
+    public PaymentInformation(int cardNuber, String nameOncard, String expDate, int securityCode)
     {
-        CardNumber = CN;
-        NameOnCard = NOC;
-        ExpDate = ED;
-        SecurityCode = SC;
+        this.cardNumber = cardNuber;
+        this.nameOnCard = nameOncard;
+        this.expDate = expDate;
+        this.securityCode = securityCode;
     }
 }
