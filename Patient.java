@@ -5,7 +5,8 @@ public class Patient
     private String LastName;
     private String DateOFBirth;
     private String Email;
-    private Address Addresses = [];
+    private Address Address;
+    private int InsuranceID;
 
     public Patient(String FN, String LN, String DOB, String EM)
     {
