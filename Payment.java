@@ -16,4 +16,5 @@ public class Payment
         this.paymentDueDate = paymentDueDate;
         this.paymentType = paymentType;
     }
+
 }

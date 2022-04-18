@@ -12,4 +12,35 @@ public class Invoice
         this.paymentDueDate = paymentDueDate;
         this.patient = patient;
     }
+
+    public void setTotalCost(double totalCost)
+    {
+        this.totalCost = totalCost;
+    }
+
+    public void setPaymentDueDate(String paymentDueDate)
+    {
+        this.paymentDueDate = paymentDueDate;
+    }
+
+    public void setPatient(Patient patient)
+    {
+        this.patient = patient;
+    }
+
+    public double getTotalCost()
+    {
+        return totalCost;
+    }
+
+    public String getPaymentDueDate()
+    {
+        return paymentDueDate;
+    }
+
+    public Patient getPatient()
+    {
+        return patient;
+    }
+
 }
