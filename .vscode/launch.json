@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Handler",
+            "request": "launch",
+            "mainClass": "Handler",
+            "projectName": "LocalRepo_bfcac096"
+        },
+        {
+            "type": "java",
             "name": "Launch web/App",
             "request": "launch",
             "mainClass": "javafx.web/App",
