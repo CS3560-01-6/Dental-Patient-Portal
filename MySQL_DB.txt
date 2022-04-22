@@ -1,0 +1,104 @@
+MySQL_DB
+
+############ MySQL Queries to build the database ############
+
+# Create Schema <insert name w/o brackets>;
+# Use Schema <insert name w/o brackets>;
+# Make sure to remove block comments surrounding the following queries
+
+############ TABLE CREATION ############ 
+
+/*
+# Patient Table
+CREATE table patient(
+insuranceID INT(20),
+fname VARCHAR(50),
+lname VARCHAR(50),
+dateofbirth VARCHAR(10),
+email VARCHAR(100),
+Primary Key(InsuranceID) 
+);
+
+# Invoice Table
+CREATE table invoice(
+invoiceID INT(20),
+insuranceID INT(20),
+totalcost decimal(10,2),
+amountLeft decimal(10,2),
+paymentDueBy VARCHAR(10),
+invoiceStatus VARCHAR(20),
+Primary Key(invoiceID),
+Foreign Key(insuranceID) references patient(insuranceID)
+);
+
+# Treatment Table
+CREATE table treatment(
+treatmentID INT(20),
+invoiceID INT(20),
+service VARCHAR(50),
+cost DECIMAL(10,2),
+Primary Key(treatmentID),
+Foreign Key(invoiceID) references invoice(invoiceID)
+);
+
+# Payment Table
+CREATE table payment(
+paymentID INT(20),
+invoiceID INT(20),
+datePaid VARCHAR(10),
+amount decimal(10,2),
+paymentStatus VARCHAR(20),
+paymentType VARCHAR(20),
+Primary Key(paymentID),
+Foreign Key(invoiceID) references invoice(invoiceID)
+);
+
+# PaymentInformation Table
+CREATE table paymentInformation(
+paymentID INT(20),
+cardNumber INT(20),
+cardHolder VARCHAR(50),
+expDate VARCHAR(10),
+securityCode INT(5),
+Primary Key(paymentID),
+Foreign Key(paymentID) References payment(paymentID)
+);
+
+# Address Table
+CREATE table address(
+insuranceID INT(20),
+addressLine VARCHAR(50),
+city VARCHAR(50),
+state VARCHAR(5),
+ZIP VARCHAR(5),
+country VARCHAR(50),
+Primary Key(insuranceID),
+Foreign Key(insuranceID) references patient(insuranceID)
+);
+*/ 
+
+############ DUMMY DATA ############
+
+# Dummy Address Data 
+/* 
+INSERT INTO address VALUES(1110004285,"123 West Temple Avenue","Pomona","CA","12345","United States"),
+						  (1129592802,"123 South Ranch Drive","Austin","TX","54321","United States"),
+                          (1217500212,"Help me street","Pheonix","AZ","15123","United States");
+*/
+
+# Dummy Patient Data
+/*
+INSERT INTO patient VALUES(1110004285,"Bob","Jones","1/2/1997","bobj123@gmail.com"),
+						  (1129592802,"Scott","Caw","3/5/1980","scaw234@hotmail.com"),
+                          (1217500212,"Reggie","Miller","9/25/1977","rmiller@gmail.com");
+*/
+
+############ DROP TABLES ############
+
+# Order in which to drop tables (without creating a FK dependency error) 
+# drop table paymentinformation;
+# drop table payment;
+# drop table treatment;
+# drop table invoice;
+# drop table address;
+# drop table patient;
