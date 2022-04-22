@@ -52,10 +52,10 @@
                                     <Label text="Last Name:" GridPane.rowIndex="1" />
                                     <Label text="Phone Number:" GridPane.rowIndex="2" />
                                     <Label text="Email:" GridPane.rowIndex="3" />
-                                    <TextField GridPane.columnIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="firstNameInput" GridPane.columnIndex="1" />
+                                    <TextField fx:id="lastNameInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="phoneNumberInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="emailInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -88,11 +88,11 @@
                                     <Label text="City:" GridPane.rowIndex="2" />
                                     <Label text="State:" GridPane.rowIndex="3" />
                                     <Label text="Zip Code:" GridPane.rowIndex="4" />
-                                    <TextField GridPane.columnIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="addressLine1Input" GridPane.columnIndex="1" />
+                                    <TextField fx:id="addressLine2Input" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="cityInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="stateInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="zipInput" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -141,10 +141,10 @@
                                     <Label text="Expiry Date:" GridPane.rowIndex="2" />
                                     <Label text="Security Code:" GridPane.rowIndex="3" />
                                     <Label text="Cardholder:" />
-                                    <TextField GridPane.columnIndex="1" />
-                                    <TextField prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="cardHolderInput" GridPane.columnIndex="1" />
+                                    <TextField fx:id="cardNumberInput" prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="expiryDateInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="CVVInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
                            </children>

@@ -4,42 +4,42 @@ import javafx.scene.control.TextField;
 public class UpdateProfilePage {
 
     @FXML
-    private TextField CVV;
+    private TextField CVVInput;
 
     @FXML
-    private TextField addressLine1;
+    private TextField addressLine1Input;
 
     @FXML
-    private TextField addressLine2;
+    private TextField addressLine2Input;
 
     @FXML
-    private TextField cardHolder;
+    private TextField cardHolderInput;
 
     @FXML
-    private TextField cardNumber;
+    private TextField cardNumberInput;
 
     @FXML
-    private TextField city;
+    private TextField cityInput;
 
     @FXML
-    private TextField email;
+    private TextField emailInput;
 
     @FXML
-    private TextField expiryDate;
+    private TextField expiryDateInput;
 
     @FXML
-    private TextField firstName;
+    private TextField firstNameInput;
 
     @FXML
-    private TextField lastName;
+    private TextField lastNameInput;
 
     @FXML
-    private TextField phoneNumber;
+    private TextField phoneNumberInput;
 
     @FXML
-    private TextField state;
+    private TextField stateInput;
 
     @FXML
-    private TextField zip;
+    private TextField zipInput;
 
 }
