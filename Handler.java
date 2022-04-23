@@ -11,7 +11,7 @@ public class Handler {
         }
         catch(Exception e)
         {
-            System.out.println("SQLException:: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -27,7 +27,7 @@ public class Handler {
         }
         catch(Exception e)
         {
-           System.out.println("SQL Exception: " + e.getMessage());
+           System.out.println(e.getMessage());
         } 
         System.out.println("Could not connect to the Database");
         return null;
@@ -47,7 +47,6 @@ public class Handler {
         {
             Scanner input = new Scanner(System.in);
             Statement statement = conn.createStatement();
-
 
             System.out.print("Select table: ");
             String table = input.nextLine();
@@ -71,7 +70,7 @@ public class Handler {
 
         catch(Exception e)
         {
-           System.out.println("SQLException: " + e.getMessage());
+           System.out.println(e.getMessage());
         } 
     }
 }
