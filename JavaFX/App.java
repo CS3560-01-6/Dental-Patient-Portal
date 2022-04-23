@@ -26,6 +26,7 @@ public class App extends Application {
         primaryStage.show();
     }
 
+    /* Changes the page to scene passed as the argument. */
     public void changeScene(String fxmlFile) throws IOException {
         Parent pane = FXMLLoader.load(getClass().getResource(fxmlFile));
         stg.getScene().setRoot(pane);

@@ -4,17 +4,19 @@ public class Patient
     private String lastName;
     private String dateOfBirth;
     private String email;
-    private int insuranceID;
+    private String phoneNumber;
+    private int patientID;
     private Address address;
     private PaymentInformation card;
 
-    public Patient(String firstName, String lastName, String dateOfBirth, String email, int insuranceID, Address address, PaymentInformation card)
+    public Patient(String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, int patientID, Address address, PaymentInformation card)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
-        this.insuranceID = insuranceID;
+        this.phoneNumber = phoneNumber;
+        this.patientID = patientID;
         this.address = address;
         this.card = card;
     }
@@ -39,9 +41,13 @@ public class Patient
         this.email = email;
     }
 
-    public void setInsuranceID(int insuranceID)
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setPatientID(int patientID)
     {
-        this.insuranceID = insuranceID;
+        this.patientID = patientID;
     }
 
     public void setAddress(Address address)
@@ -74,9 +80,14 @@ public class Patient
         return email;
     }
 
-    public int getInsuranceID()
+    public String getPhoneNumber() 
     {
-        return insuranceID;
+        return phoneNumber;
+    }
+
+    public int getPatientID()
+    {
+        return patientID;
     }
 
     public String getAddress()

@@ -1,6 +1,7 @@
 public class PaymentInformation
 {
     private int cardNumber;
+    private String lastFourDigits;
     private String nameOnCard;
     private String expDate;
     private int securityCode;
@@ -8,6 +9,7 @@ public class PaymentInformation
     public PaymentInformation(int cardNumber, String nameOncard, String expDate, int securityCode)
     {
         this.cardNumber = cardNumber;
+        this.lastFourDigits = Integer.toString(cardNumber).substring(Integer.toString(cardNumber).length() - 4);
         this.nameOnCard = nameOncard;
         this.expDate = expDate;
         this.securityCode = securityCode;
@@ -44,6 +46,11 @@ public class PaymentInformation
     public int getCardNumber()
     {
         return cardNumber;
+    }
+
+    public String getLastFourDigits() 
+    {
+        return lastFourDigits;
     }
 
     public String getCardName()

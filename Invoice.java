@@ -28,6 +28,10 @@ public class Invoice
         this.patient = patient;
     }
 
+    public int getInvoiceId() {
+        return invoiceId;
+    }
+
     public double getTotalCost()
     {
         return totalCost;
