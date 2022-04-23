@@ -50,7 +50,7 @@ public class Handler {
 
             System.out.print("Select table: ");
             String table = input.nextLine();
-            System.out.println("Select column: ");
+            System.out.print("Select column: ");
             String column = input.nextLine();
 
             ResultSet rs = statement.executeQuery("SELECT " + column + " FROM " + table);            
