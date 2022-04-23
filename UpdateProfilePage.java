@@ -1,4 +1,5 @@
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class UpdateProfilePage {
@@ -11,6 +12,9 @@ public class UpdateProfilePage {
 
     @FXML
     private TextField addressLine2Input;
+
+    @FXML
+    private Button cancelButton;
 
     @FXML
     private TextField cardHolderInput;
@@ -35,6 +39,9 @@ public class UpdateProfilePage {
 
     @FXML
     private TextField phoneNumberInput;
+
+    @FXML
+    private Button saveButton;
 
     @FXML
     private TextField stateInput;
