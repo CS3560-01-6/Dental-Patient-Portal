@@ -1,3 +1,4 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -48,5 +49,17 @@ public class UpdateProfilePage {
 
     @FXML
     private TextField zipInput;
+
+    /* Closes Update Profile Page window and does not save any changes if made. */
+    @FXML
+    void cancelProfileChanges(ActionEvent event) {
+
+    }
+
+    /* Saves any changes made to profile and updates attributes of Patient to new changes. */
+    @FXML
+    void saveProfile(ActionEvent event) {
+
+    }
 
 }

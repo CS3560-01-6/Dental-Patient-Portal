@@ -63,11 +63,13 @@ public class HomePage {
 
     }
 
+    /* Switches the tabs. */
     @FXML
     void switchTab(ActionEvent event) {
 
     }
 
+    /* Prompts the Update Profile Page. */
     @FXML
     void updateProfile(ActionEvent event) {
 

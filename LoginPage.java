@@ -31,6 +31,8 @@ public class LoginPage {
         checkLogin();
     }
 
+
+    /* Checks the login using Patient ID and Password. */
      private void checkLogin() throws IOException {
          App app = new App();
         
