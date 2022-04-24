@@ -2,10 +2,14 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Tab;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class HomePage {
 
@@ -64,19 +68,19 @@ public class HomePage {
     @FXML
     void logout(ActionEvent event) throws IOException {
         App app = new App();
-        app.changeScene("src/LoginScene.fxml");
-    }
-
-    /* Switches the tabs. */
-    @FXML
-    void switchTab(ActionEvent event) {
-
+        app.changeScene("LoginScene.fxml");
+        System.out.println("Patient logged out successfully.");
     }
 
     /* Prompts the Update Profile Page. */
     @FXML
-    void updateProfile(ActionEvent event) {
-
+    void updateProfile(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("src/UpdateProfileScene.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Update Profile");
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Update Profile popup launched successfully.");
     }
-
 }

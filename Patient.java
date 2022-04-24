@@ -8,6 +8,7 @@ public class Patient
     private int patientID;
     private Address address;
     private PaymentInformation card;
+    private String password;
 
     public Patient(String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, int patientID, Address address, PaymentInformation card)
     {
@@ -60,6 +61,10 @@ public class Patient
         this.card = card;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getFirstName()
     {
         return firstName;
@@ -98,5 +103,9 @@ public class Patient
     public String getCard()
     {
         return card.toString();
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

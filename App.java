@@ -11,6 +11,7 @@ public class App extends Application {
     private static Stage stg;
 
     public static void main(String[] args) {
+        System.out.println("Successfully Launched Application.");
         launch(args);
     }
 
@@ -28,9 +29,9 @@ public class App extends Application {
 
     /* Changes the page to scene passed as the argument. */
     public void changeScene(String fxmlFile) throws IOException {
-        System.out.println(fxmlFile + " File Loaded.");
-        Parent pane = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Parent pane = FXMLLoader.load(getClass().getResource("src/" + fxmlFile));
         stg.getScene().setRoot(pane);
+        System.out.println(fxmlFile + " File Loaded.");
     }
 
 }

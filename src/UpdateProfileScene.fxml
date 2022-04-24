@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UpdateProfilePage">
    <center>
@@ -52,7 +52,10 @@
                                     <Label text="Last Name:" GridPane.rowIndex="1" />
                                     <Label text="Phone Number:" GridPane.rowIndex="2" />
                                     <Label text="Email:" GridPane.rowIndex="3" />
-                                    <TextField fx:id="firstNameInput" GridPane.columnIndex="1" />
+                                    <TextField fx:id="firstNameInput" GridPane.columnIndex="1">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></TextField>
                                     <TextField fx:id="lastNameInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextField fx:id="phoneNumberInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <TextField fx:id="emailInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -159,11 +162,17 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="saveButton" alignment="CENTER" mnemonicParsing="false" onAction="#saveProfile" style="-fx-background-color: transparent; -fx-border-color: #2C7630; -fx-border-radius: 3; -fx-background-radius: 3;" text="Save" textFill="#2c7630" />
+            <Button fx:id="saveButton" alignment="CENTER" mnemonicParsing="false" onAction="#saveProfile" style="-fx-background-color: transparent; -fx-border-color: #2C7630; -fx-border-radius: 3; -fx-background-radius: 3;" text="Save" textFill="#2c7630">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelProfileChanges" opacity="0.5" style="-fx-background-color: transparent; -fx-background-radius: 3; -fx-border-radius: 3;" text="Cancel">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </HBox>
