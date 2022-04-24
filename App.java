@@ -15,7 +15,7 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws Exception {
 
         stg = primaryStage;
         primaryStage.setTitle("Cal Poly Pomona Dental Office");
@@ -28,6 +28,7 @@ public class App extends Application {
 
     /* Changes the page to scene passed as the argument. */
     public void changeScene(String fxmlFile) throws IOException {
+        System.out.println(fxmlFile + " File Loaded.");
         Parent pane = FXMLLoader.load(getClass().getResource(fxmlFile));
         stg.getScene().setRoot(pane);
     }

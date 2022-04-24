@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -60,9 +62,9 @@ public class HomePage {
 
     /* Logs user out and returns back to login page */
     @FXML
-    void logout(ActionEvent event) {
+    void logout(ActionEvent event) throws IOException {
         App app = new App();
-        app.changeScene("LoginScene.fxml");
+        app.changeScene("src/LoginScene.fxml");
     }
 
     /* Switches the tabs. */

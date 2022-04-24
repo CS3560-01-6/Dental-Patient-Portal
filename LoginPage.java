@@ -31,11 +31,14 @@ public class LoginPage {
      private void checkLogin() throws IOException {
          App app = new App();
         
-         /* implementation for checking login */
-         
-         //if correct login, app.changeScene("homePage.fxml");
-         //if any login fields are empty, wrongLogin.setText(MESSAGE);
-         // else if username or password, wrong.Login.setText(MESSAGE);
+        
+        if(patientID.getText().toString().equals("123456") && password.getText().toString().equals("abc123")) { // CHANGE COMPARISON CONDITIONS LATER
+        app.changeScene("src/HomeScene.fxml");
+        } else if (patientID.getText().isEmpty() && password.getText().isEmpty()) {
+            wrongLogin.setText("Missing required login fields.");
+        } else {
+            wrongLogin.setText("Invalid Patient ID or Password.");
+        }
     }
 
 }
