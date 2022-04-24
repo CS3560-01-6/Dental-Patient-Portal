@@ -23,14 +23,9 @@ public class LoginPage {
     private Label wrongLogin;
 
     @FXML
-    void patientLogin(ActionEvent event) {
-
-    }
-
-    public void userLogin(ActionEvent event) throws IOException {
+    void patientLogin(ActionEvent event) throws IOException {
         checkLogin();
     }
-
 
     /* Checks the login using Patient ID and Password. */
      private void checkLogin() throws IOException {

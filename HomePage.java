@@ -58,9 +58,11 @@ public class HomePage {
     @FXML
     private Text zip;
 
+    /* Logs user out and returns back to login page */
     @FXML
     void logout(ActionEvent event) {
-
+        App app = new App();
+        app.changeScene("LoginScene.fxml");
     }
 
     /* Switches the tabs. */

@@ -159,8 +159,8 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="saveButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #2C7630; -fx-border-radius: 3; -fx-background-radius: 3;" text="Save" textFill="#2c7630" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" opacity="0.5" style="-fx-background-color: transparent; -fx-background-radius: 3; -fx-border-radius: 3;" text="Cancel">
+            <Button fx:id="saveButton" alignment="CENTER" mnemonicParsing="false" onAction="#saveProfile" style="-fx-background-color: transparent; -fx-border-color: #2C7630; -fx-border-radius: 3; -fx-background-radius: 3;" text="Save" textFill="#2c7630" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelProfileChanges" opacity="0.5" style="-fx-background-color: transparent; -fx-background-radius: 3; -fx-border-radius: 3;" text="Cancel">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
