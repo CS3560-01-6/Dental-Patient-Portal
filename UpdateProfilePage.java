@@ -1,7 +1,11 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class UpdateProfilePage {
 
@@ -53,7 +57,15 @@ public class UpdateProfilePage {
     /* Closes Update Profile Page window and does not save any changes if made. */
     @FXML
     void cancelProfileChanges(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cancel");
+        alert.setHeaderText("Are you sure you want to cancel before saving changes?");
+        alert.setContentText("All unsaved changes will be lost.");
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            Node node = (Node) event.getSource();
+            Stage updateProfileStage = (Stage) node.getScene().getWindow();
+            updateProfileStage.close();
+        }
     }
 
     /* Saves any changes made to profile and updates attributes of Patient to new changes. */

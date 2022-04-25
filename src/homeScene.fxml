@@ -24,7 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePage">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePage">
    <top>
       <Label alignment="TOP_LEFT" opacity="0.75" prefHeight="47.0" prefWidth="592.0" style="-fx-background-color: #FFFFFF;" text="                Cal Poly Pomona Dental Patient Portal" textAlignment="CENTER" textFill="#2c7630" wrapText="true" BorderPane.alignment="CENTER">
          <font>
@@ -119,6 +119,13 @@
                      </right>
                   </BorderPane>
                </content>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/account-outline.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
           </Tab>
             <Tab fx:id="invoicesTab" text="Invoices">
               <content>
@@ -141,6 +148,13 @@
                      </children>
                   </AnchorPane>
               </content>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/receipt-outline.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Tab>
           <Tab fx:id="paymentHistoryTab" text="Payment History">
             <content>
@@ -156,6 +170,13 @@
                      </children>
                   </AnchorPane>
             </content>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/credit-card-outline.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
           </Tab>
         </tabs>
       </TabPane>
@@ -163,7 +184,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="0.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="logoutButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent; -fx-border-color: #2C7630; -fx-border-radius: 3; -fx-background-radius: 3;" text="Logout" textAlignment="RIGHT" textFill="#2c7630">
+            <Button fx:id="logoutButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent; -fx-border-color: #2C7630; -fx-border-radius: 3; -fx-background-radius: 3;" styleClass="mainButton" text="Logout" textAlignment="RIGHT" textFill="#2c7630">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

@@ -1,5 +1,6 @@
 import java.beans.EventHandler;
 import java.io.IOException;
+import java.sql.Connection;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +31,8 @@ public class LoginPage {
     /* Checks the login using Patient ID and Password. */
      private void checkLogin() throws IOException {
          App app = new App();
-        
+        Handler sqlConnection = new Handler();
+        // Connection connection = sqlConnection.connectDB();
         
         if(patientID.getText().toString().equals("123") && password.getText().toString().equals("abc")) { // CHANGE COMPARISON CONDITIONS TO DATABASE
             System.out.println("Patient logged in successfully.");
