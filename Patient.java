@@ -7,10 +7,9 @@ public class Patient
     private String phoneNumber;
     private int patientID;
     private Address address;
-    private PaymentInformation card;
     private String password;
 
-    public Patient(int patientID, String password, String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, Address address, PaymentInformation card)
+    public Patient(int patientID, String password, String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, Address address)
     {
         this.patientID = patientID;
         this.password = password;
@@ -20,7 +19,6 @@ public class Patient
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.card = card;
     }
 
     public void setFirstName(String firstName)
@@ -55,11 +53,6 @@ public class Patient
     public void setAddress(Address address)
     {
         this.address = address;
-    }
-
-    public void setCard(PaymentInformation card)
-    {
-        this.card = card;
     }
 
     public void setPassword(String password) {
@@ -99,11 +92,6 @@ public class Patient
     public String getAddress()
     {
         return address.toString();
-    }
-
-    public String getCard()
-    {
-        return card.toString();
     }
 
     public String getPassword() {
