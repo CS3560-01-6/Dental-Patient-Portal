@@ -11,24 +11,25 @@ MySQL_DB
 /*
 # Patient Table
 CREATE table patient(
-insuranceID INT(20),
+patientID INT(7),
+password VARCHAR(50),
 fname VARCHAR(50),
 lname VARCHAR(50),
 dateofbirth VARCHAR(10),
 email VARCHAR(100),
-Primary Key(InsuranceID) 
+Primary Key(patientID) 
 );
 
 # Invoice Table
 CREATE table invoice(
 invoiceID INT(20),
-insuranceID INT(20),
+patientID INT(7),
 totalcost decimal(10,2),
 amountLeft decimal(10,2),
 paymentDueBy VARCHAR(10),
 invoiceStatus VARCHAR(20),
 Primary Key(invoiceID),
-Foreign Key(insuranceID) references patient(insuranceID)
+Foreign Key(patientID) references patient(patientID)
 );
 
 # Treatment Table
@@ -66,14 +67,14 @@ Foreign Key(paymentID) References payment(paymentID)
 
 # Address Table
 CREATE table address(
-insuranceID INT(20),
+patientID INT(20),
 addressLine VARCHAR(50),
 city VARCHAR(50),
 state VARCHAR(5),
 ZIP VARCHAR(5),
 country VARCHAR(50),
-Primary Key(insuranceID),
-Foreign Key(insuranceID) references patient(insuranceID)
+Primary Key(patientID),
+Foreign Key(patientID) references patient(patientID)
 );
 */ 
 
@@ -81,16 +82,16 @@ Foreign Key(insuranceID) references patient(insuranceID)
 
 # Dummy Address Data 
 /* 
-INSERT INTO address VALUES(1110004285,"123 West Temple Avenue","Pomona","CA","12345","United States"),
-						  (1129592802,"123 South Ranch Drive","Austin","TX","54321","United States"),
-                          (1217500212,"Help me street","Pheonix","AZ","15123","United States");
+INSERT INTO address VALUES(1100428,"123 West Temple Avenue","Pomona","CA","12345","United States"),
+						  (1295928,"123 South Ranch Drive","Austin","TX","54321","United States"),
+                          (1217502,"456 Circle Street","Pheonix","AZ","15123","United States");
 */
 
 # Dummy Patient Data
 /*
-INSERT INTO patient VALUES(1110004285,"Bob","Jones","1/2/1997","bobj123@gmail.com"),
-						  (1129592802,"Scott","Caw","3/5/1980","scaw234@hotmail.com"),
-                          (1217500212,"Reggie","Miller","9/25/1977","rmiller@gmail.com");
+INSERT INTO patient VALUES(1100428,"abc123","Bob","Jones","1/2/1997","bobj123@gmail.com"),
+						  (1295928,"password1","Scott","Caw","3/5/1980","scaw234@hotmail.com"),
+                          (1217502,"mypassword","Randy","Miller","9/25/1977","rmiller@gmail.com");
 */
 
 ############ DROP TABLES ############
