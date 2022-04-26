@@ -1,5 +1,3 @@
-import java.beans.EventHandler;
-import java.io.IOException;
 import java.sql.*;
 
 import javafx.event.ActionEvent;
@@ -44,7 +42,7 @@ public class LoginPage {
         while(queryResult.next()) {
             if(queryResult.getInt(1) == 1) {
                 System.out.println("Patient logged in successfully.");
-                app.changeScene("HomeScene.fxml");
+                app.goToHome(patientID.getText());
             } else if (patientID.getText().isEmpty() || password.getText().isEmpty()) {
                 wrongLogin.setText("Missing required login fields.");
             } else {

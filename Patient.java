@@ -10,14 +10,15 @@ public class Patient
     private PaymentInformation card;
     private String password;
 
-    public Patient(String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, int patientID, Address address, PaymentInformation card)
+    public Patient(int patientID, String password, String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, Address address, PaymentInformation card)
     {
+        this.patientID = patientID;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.patientID = patientID;
         this.address = address;
         this.card = card;
     }

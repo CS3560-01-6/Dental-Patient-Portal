@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,6 +67,8 @@ public class HomePage {
     @FXML
     private Text zip;
 
+    Connection connection = null;
+
     /* Logs user out and returns back to login page */
     @FXML
     void logout(ActionEvent event) throws IOException {
@@ -82,5 +87,24 @@ public class HomePage {
         stage.setScene(scene);
         stage.show();
         System.out.println("Update Profile popup launched successfully.");
+    }
+
+    public void displayPatientInfo(String patientID) throws Exception {
+        Handler sqlConnection = new Handler();
+        connection = sqlConnection.connectDB();
+
+        String getPatientInfo = "SELECT * FROM patient WHERE patientID = '" + patientID + "'";
+        String getAddressInfo = "SELECT * FROM address WHERE patientID = '" + patientID + "'";
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(getPatientInfo);
+
+        result.next();
+        this.patientID.setText(patientID);
+        this.firstName.setText(result.getString("fname"));
+        this.lastName.setText(result.getString("lname"));
+        this.dateOfBirth.setText(result.getString("dateofbirth"));
+        this.email.setText(result.getString("email"));
+        this.phoneNumber.setText(result.getString("phonenumber"));
     }
 }

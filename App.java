@@ -29,9 +29,20 @@ public class App extends Application {
 
     /* Changes the page to scene passed as the argument. */
     public void changeScene(String fxmlFile) throws IOException {
-        Parent pane = FXMLLoader.load(getClass().getResource("src/" + fxmlFile));
-        stg.getScene().setRoot(pane);
+        Parent root = FXMLLoader.load(getClass().getResource("src/" + fxmlFile));
+        stg.getScene().setRoot(root);
         System.out.println(fxmlFile + " File Loaded.");
     }
 
+    /* Sends user to the home page */
+    public void goToHome(String patientID) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/HomeScene.fxml"));
+        Parent root = loader.load();
+
+        HomePage homePageController = loader.getController();
+        homePageController.displayPatientInfo(patientID);
+
+        stg.getScene().setRoot(root);
+        System.out.println("Patient Loaded Home Screen.");
+    }
 }

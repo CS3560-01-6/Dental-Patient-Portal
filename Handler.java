@@ -22,7 +22,7 @@ public class Handler {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Password should be what you entered for your local mySQL DB
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cs3560group6","root","2LsQL@:O");  
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cs3560group6","root","6621");  
             System.out.println("Connected to Database");
             return conn;
         }
