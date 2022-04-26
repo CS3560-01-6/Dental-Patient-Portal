@@ -65,6 +65,7 @@ public class UpdateProfilePage {
             Node node = (Node) event.getSource();
             Stage updateProfileStage = (Stage) node.getScene().getWindow();
             updateProfileStage.close();
+            System.out.println("Update Profile Page Closed.");
         }
     }
 

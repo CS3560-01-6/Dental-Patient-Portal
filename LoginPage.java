@@ -1,6 +1,6 @@
 import java.beans.EventHandler;
 import java.io.IOException;
-import java.sql.Connection;
+import java.sql.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,24 +23,33 @@ public class LoginPage {
     @FXML
     private Label wrongLogin;
 
+    Connection connection = null;
+
     @FXML
-    void patientLogin(ActionEvent event) throws IOException {
+    void patientLogin(ActionEvent event) throws Exception {
         checkLogin();
     }
 
     /* Checks the login using Patient ID and Password. */
-     private void checkLogin() throws IOException {
-         App app = new App();
+     private void checkLogin() throws Exception {
+        App app = new App();
         Handler sqlConnection = new Handler();
-        // Connection connection = sqlConnection.connectDB();
-        
-        if(patientID.getText().toString().equals("123") && password.getText().toString().equals("abc")) { // CHANGE COMPARISON CONDITIONS TO DATABASE
-            System.out.println("Patient logged in successfully.");
-            app.changeScene("HomeScene.fxml");
-        } else if (patientID.getText().isEmpty() || password.getText().isEmpty()) {
-            wrongLogin.setText("Missing required login fields.");
-        } else {
-            wrongLogin.setText("Invalid Patient ID or Password.");
+        connection = sqlConnection.connectDB();
+
+        String verifyLoginQuery = "SELECT count(1) FROM patient WHERE patientID = '" + patientID.getText() + "' AND password = '" + password.getText() + "'";
+
+        Statement statement = connection.createStatement();
+        ResultSet queryResult = statement.executeQuery(verifyLoginQuery);
+
+        while(queryResult.next()) {
+            if(queryResult.getInt(1) == 1) {
+                System.out.println("Patient logged in successfully.");
+                app.changeScene("HomeScene.fxml");
+            } else if (patientID.getText().isEmpty() || password.getText().isEmpty()) {
+                wrongLogin.setText("Missing required login fields.");
+            } else {
+                wrongLogin.setText("Invalid Patient ID or Password.");
+            }
         }
     }
 
