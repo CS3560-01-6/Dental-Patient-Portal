@@ -17,7 +17,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         stg = primaryStage;
         primaryStage.setTitle("Cal Poly Pomona Dental Office");
         primaryStage.setResizable(false);

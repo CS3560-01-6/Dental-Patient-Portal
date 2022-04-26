@@ -73,7 +73,7 @@ public class HomePage {
     @FXML
     void logout(ActionEvent event) throws IOException {
         App app = new App();
-        app.changeScene("LoginScene.fxml");
+        app.changeScene("LoginScene.fxml"); // returns user to log in screen
         System.out.println("Patient logged out successfully.");
     }
 
@@ -89,6 +89,7 @@ public class HomePage {
         System.out.println("Update Profile popup launched successfully.");
     }
 
+    /* Displays default patient information on home page. */
     public void displayPatientInfo(String patientID) throws Exception {
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB();
@@ -99,6 +100,7 @@ public class HomePage {
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(getPatientInfo);
 
+        // sets default patient information
         result.next();
         this.patientID.setText(patientID);
         this.firstName.setText(result.getString("fname"));
@@ -107,6 +109,7 @@ public class HomePage {
         this.email.setText(result.getString("email"));
         this.phoneNumber.setText(result.getString("phonenumber"));
 
+        // sets default patient address information
         result = statement.executeQuery(getAddressInfo);
         result.next();
         this.addressLine1.setText(result.getString("addressLine1"));
