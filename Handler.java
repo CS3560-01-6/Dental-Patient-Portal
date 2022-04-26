@@ -4,19 +4,11 @@ import java.util.*;
 public class Handler {
     public static void main(String[] args) throws Exception
     {
-        try
-        {
-            Connection conn = connectDB();
-            menu(conn);
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+        
     }
     // end main 
 
-    public static Connection connectDB() throws Exception
+    public Connection connectDB() throws Exception
     {
         try
         {
@@ -33,17 +25,8 @@ public class Handler {
         System.out.println("Could not connect to the Database");
         return null;
     }
-    // end connectDB 
 
-    public static void menu(Connection conn) throws Exception
-    {
-            // Scanner input = new Scanner(System.in);
-            // input.close();
-            // showTable(conn);
-            // updateEmail(conn);
-            // ERROR NO LINE FOUND (When calling showTable after updateEmail)
-    }
-    // end menu 
+    // end connectDB
 
     public static void updateEmail(Connection conn) throws Exception
     {
@@ -84,10 +67,12 @@ public class Handler {
     }
     // end updateEmail
 
-    public static void showTable(Connection conn) throws Exception
+    public void showResult(ResultSet rs) throws Exception
     {
         try
         {
+
+            /* 
             Scanner input = new Scanner(System.in);
             Statement statement = conn.createStatement();
 
@@ -95,8 +80,10 @@ public class Handler {
             String table = input.nextLine();
             System.out.print("Select column: ");
             String column = input.nextLine();
+            
+            ResultSet rs = statement.executeQuery("SELECT " + column + " FROM " + table);    
+            */      
 
-            ResultSet rs = statement.executeQuery("SELECT " + column + " FROM " + table);            
             ResultSetMetaData rsmd = rs.getMetaData();
             int col = rsmd.getColumnCount();
             while(rs.next())
@@ -108,9 +95,7 @@ public class Handler {
                 }
                 System.out.println("");
             }
-            input.close();
         }   
-
         catch(Exception e)
         {
            System.out.println(e.getMessage());
