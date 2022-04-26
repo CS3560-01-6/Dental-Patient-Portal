@@ -17,4 +17,56 @@ public class Payment
         this.paymentType = paymentType;
     }
 
+    public String getData() {
+        return this.data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public int getAmount() {
+        return this.amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public boolean isPaidStatus() {
+        return this.paidStatus;
+    }
+
+    public boolean getPaidStatus() {
+        return this.paidStatus;
+    }
+
+    public void setPaidStatus(boolean paidStatus) {
+        this.paidStatus = paidStatus;
+    }
+
+    public Treatment getService() {
+        return this.service;
+    }
+
+    public void setService(Treatment service) {
+        this.service = service;
+    }
+
+    public String getPaymentDueDate() {
+        return this.paymentDueDate;
+    }
+
+    public void setPaymentDueDate(String paymentDueDate) {
+        this.paymentDueDate = paymentDueDate;
+    }
+
+    public String getPaymentType() {
+        return this.paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
 }
