@@ -106,5 +106,13 @@ public class HomePage {
         this.dateOfBirth.setText(result.getString("dateofbirth"));
         this.email.setText(result.getString("email"));
         this.phoneNumber.setText(result.getString("phonenumber"));
+
+        result = statement.executeQuery(getAddressInfo);
+        result.next();
+        this.addressLine1.setText(result.getString("addressLine1"));
+        this.addressLine2.setText(result.getString("addressLine2"));
+        this.city.setText(result.getString("city"));
+        this.state.setText(result.getString("state"));
+        this.zip.setText(result.getString("zip"));
     }
 }

@@ -72,7 +72,7 @@ public class UpdateProfilePage {
     /* Saves any changes made to profile and updates attributes of Patient to new changes. */
     @FXML
     void saveProfile(ActionEvent event) {
-
+        
     }
 
 }
