@@ -68,6 +68,8 @@ public class HomePage {
     private Text zip;
 
     Connection connection = null;
+    Patient patient;
+    Address address;
 
     /* Logs user out and returns back to login page */
     @FXML
@@ -91,31 +93,53 @@ public class HomePage {
 
     /* Displays default patient information on home page. */
     public void displayPatientInfo(String patientID) throws Exception {
+
+        // displays default patient address information
+        this.patientID.setText(patientID);
+        this.firstName.setText(patient.getFirstName());
+        this.lastName.setText(patient.getLastName());
+        this.dateOfBirth.setText(patient.getDateOfBirth());
+        this.email.setText(patient.getEmail());
+        this.phoneNumber.setText(patient.getPhoneNumber());
+
+        // displays default patient address information
+        this.addressLine1.setText(address.getAddressLine1());
+        this.addressLine2.setText(address.getAddressLine2());
+        this.city.setText(address.getCity());
+        this.state.setText(address.getState());
+        this.zip.setText(Integer.toString(address.getZip()));
+    }
+
+    /* Initializes Patient */
+    public void setPatient(int patientID) throws Exception {
+        setAddress(patientID);
+
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB();
 
         String getPatientInfo = "SELECT * FROM patient WHERE patientID = '" + patientID + "'";
-        String getAddressInfo = "SELECT * FROM address WHERE patientID = '" + patientID + "'";
 
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(getPatientInfo);
-
-        // sets default patient information
+        
         result.next();
-        this.patientID.setText(patientID);
-        this.firstName.setText(result.getString("fname"));
-        this.lastName.setText(result.getString("lname"));
-        this.dateOfBirth.setText(result.getString("dateofbirth"));
-        this.email.setText(result.getString("email"));
-        this.phoneNumber.setText(result.getString("phonenumber"));
+        patient = new Patient(patientID, result.getString("password"), result.getString("fname"), result.getString("lname"), 
+                            result.getString("dateofbirth"), result.getString("email"), result.getString("phonenumber"), address);
 
-        // sets default patient address information
-        result = statement.executeQuery(getAddressInfo);
+        displayPatientInfo(Integer.toString(patientID));
+    }
+
+    /* Initializes Address */
+    public void setAddress(int patientID) throws Exception {
+        Handler sqlConnection = new Handler();
+        connection = sqlConnection.connectDB();
+
+        String getAddressInfo = "SELECT * FROM address WHERE patientID = '" + patientID + "'";
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(getAddressInfo);
+
         result.next();
-        this.addressLine1.setText(result.getString("addressLine1"));
-        this.addressLine2.setText(result.getString("addressLine2"));
-        this.city.setText(result.getString("city"));
-        this.state.setText(result.getString("state"));
-        this.zip.setText(result.getString("zip"));
+        address = new Address(result.getString("addressLine1"), result.getString("addressLine2"), result.getString("city"), result.getString("state"), Integer.parseInt(result.getString("zip")));
     }
 }

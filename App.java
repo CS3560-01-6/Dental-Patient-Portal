@@ -39,7 +39,7 @@ public class App extends Application {
         Parent root = loader.load();
 
         HomePage homePageController = loader.getController();
-        homePageController.displayPatientInfo(patientID);
+        homePageController.setPatient(Integer.parseInt(patientID));
 
         stg.getScene().setRoot(root);
         System.out.println("Patient Loaded Home Screen.");
