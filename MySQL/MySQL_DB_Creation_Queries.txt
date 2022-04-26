@@ -17,6 +17,7 @@ fname VARCHAR(50),
 lname VARCHAR(50),
 dateofbirth VARCHAR(10),
 email VARCHAR(100),
+phonenumber VARCHAR(10),
 Primary Key(patientID) 
 );
 
