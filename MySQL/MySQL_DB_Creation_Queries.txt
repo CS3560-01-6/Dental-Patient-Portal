@@ -74,7 +74,6 @@ addressLine2 VARCHAR(50),
 city VARCHAR(50),
 state VARCHAR(5),
 ZIP VARCHAR(5),
-country VARCHAR(50),
 Primary Key(patientID),
 Foreign Key(patientID) references patient(patientID)
 );
@@ -84,9 +83,9 @@ Foreign Key(patientID) references patient(patientID)
 
 # Dummy Address Data 
 /* 
-INSERT INTO address VALUES(1100428,"123 West Temple Avenue",null,"Pomona","CA","12345","United States"),
-						  (1295928,"123 South Ranch Drive",null,"Austin","TX","54321","United States"),
-                          (1217502,"456 Circle Street",null,"Pheonix","AZ","15123","United States");
+INSERT INTO address VALUES(1100428,"123 West Temple Avenue",null,"Pomona","CA","12345"),
+						  (1295928,"123 South Ranch Drive",null,"Austin","TX","54321",
+                          (1217502,"456 Circle Street",null,"Pheonix","AZ","15123");
 */
 
 # Dummy Patient Data
