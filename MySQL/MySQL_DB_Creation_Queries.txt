@@ -19,6 +19,7 @@ dateofbirth VARCHAR(10),
 email VARCHAR(100),
 phonenumber VARCHAR(15),
 Primary Key(patientID) 
+Foreign Key(paymentID) references paymentInformation(paymentID)
 );
 
 # Invoice Table
