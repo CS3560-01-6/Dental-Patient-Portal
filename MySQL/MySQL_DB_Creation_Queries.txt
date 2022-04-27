@@ -26,7 +26,6 @@ CREATE table invoice(
 invoiceID INT(10),
 patientID INT(7),
 totalcost decimal(10,2),
-amountLeft decimal(10,2),
 paymentDueBy VARCHAR(10),
 invoiceStatus VARCHAR(20),
 Primary Key(invoiceID),
@@ -68,7 +67,7 @@ Foreign Key(paymentID) References payment(paymentID)
 
 # Address Table
 CREATE table address(
-patientID INT(20),
+patientID INT(7),
 addressLine1 VARCHAR(50),
 addressLine2 VARCHAR(50),
 city VARCHAR(50),
