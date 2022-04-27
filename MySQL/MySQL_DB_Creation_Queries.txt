@@ -23,7 +23,7 @@ Primary Key(patientID)
 
 # Invoice Table
 CREATE table invoice(
-invoiceID INT(20),
+invoiceID INT(10),
 patientID INT(7),
 totalcost decimal(10,2),
 amountLeft decimal(10,2),
@@ -36,7 +36,7 @@ Foreign Key(patientID) references patient(patientID)
 # Treatment Table
 CREATE table treatment(
 treatmentID INT(20),
-invoiceID INT(20),
+invoiceID INT(10),
 service VARCHAR(50),
 cost DECIMAL(10,2),
 Primary Key(treatmentID),
@@ -46,7 +46,7 @@ Foreign Key(invoiceID) references invoice(invoiceID)
 # Payment Table
 CREATE table payment(
 paymentID INT(20),
-invoiceID INT(20),
+invoiceID INT(10),
 datePaid VARCHAR(10),
 amount decimal(10,2),
 paymentStatus VARCHAR(20),

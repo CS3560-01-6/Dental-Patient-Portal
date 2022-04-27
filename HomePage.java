@@ -90,12 +90,13 @@ public class HomePage {
     /* Prompts the Update Profile Page. */
     @FXML
     void updateProfile(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/UpdateProfileScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/UpdateProfileScene.fxml")); // loads UpdateProfileScene.fxml
         Parent root = loader.load();
 
-        UpdateProfilePage updateProfileController = loader.getController();
+        UpdateProfilePage updateProfileController = loader.getController(); // grants access to class controller and class variables
         updateProfileController.loadPatientInfo(patient);
 
+        // Opens Update Profile Window
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Update Profile");
