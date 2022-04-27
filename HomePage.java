@@ -10,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -33,6 +35,12 @@ public class HomePage {
 
     @FXML
     private Text firstName;
+
+    @FXML
+    private ListView<Invoice> invoiceList;
+
+    @FXML
+    private TextField invoiceSearchBar;
 
     @FXML
     private Tab invoicesTab;
