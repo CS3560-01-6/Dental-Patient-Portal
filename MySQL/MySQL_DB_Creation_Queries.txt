@@ -95,6 +95,30 @@ INSERT INTO patient VALUES(1100428,"abc123","Bob","Jones","1/2/1997","bobj123@gm
                           (1217502,"mypassword","Randy","Miller","9/25/1977","rmiller@gmail.com","657-221-4402");
 */
 
+# Dummy Payment Data
+/*
+INSERT INTO payment VALUES(00022343, 1452857592, "01/25/2019", 120.39, "Paid", "Credit"),
+			(00034951, 3728367751,  "--/--/----", 0.0, "Unpaid", "None"),
+			(00035231, 3728579228,  "--/--/----", 0.0, "Unpaid" "None");
+
+*/
+
+# Dummy PaymentInformation Data
+/*
+INSERT INTO paymentInformation VALUES(00022343, 1234567890123456, "Bob Jones", "03/25", 123),
+		(00034951, 4531379544848231, "Scott Caw", "05/29", 555),
+		(00035231, 7982867234560132, "Randy miller", "07/30", 456);
+
+*/
+
+# Dummy Treatment Data
+/*
+INSERT INTO treatment VALUES(0021, 1100428, "Dental cleaning and X-ray", 120.39),
+				(0035, 1295928, "Dental filling", 123.90),
+				(0052, 1217502, "Wisdom tooth extraction", 202.54);
+
+*/
+
 ############ DROP TABLES ############
 
 # Order in which to drop tables (without creating a FK dependency error) 
