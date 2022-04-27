@@ -94,7 +94,7 @@ public class HomePage {
         Parent root = loader.load();
 
         UpdateProfilePage updateProfileController = loader.getController(); // grants access to class controller and class variables
-        updateProfileController.loadPatientInfo(patient);
+        updateProfileController.loadPatientInfo(patient, address);
 
         // Opens Update Profile Window
         Scene scene = new Scene(root);
@@ -107,10 +107,10 @@ public class HomePage {
     }
 
     /* Displays default patient information on home page. */
-    public void displayPatientInfo(String patientID) throws Exception {
+    public void displayPatientInfo() throws Exception {
 
         // displays default patient address information
-        this.patientID.setText(patientID);
+        this.patientID.setText(Integer.toString(patient.getPatientID()));
         this.firstName.setText(patient.getFirstName());
         this.lastName.setText(patient.getLastName());
         this.dateOfBirth.setText(patient.getDateOfBirth());
@@ -141,7 +141,7 @@ public class HomePage {
         patient = new Patient(patientID, result.getString("password"), result.getString("fname"), result.getString("lname"), 
                             result.getString("dateofbirth"), result.getString("email"), result.getString("phonenumber"), address);
 
-        displayPatientInfo(Integer.toString(patientID));
+        displayPatientInfo();
     }
 
     /* Initializes Address */
@@ -156,5 +156,12 @@ public class HomePage {
 
         result.next();
         address = new Address(result.getString("addressLine1"), result.getString("addressLine2"), result.getString("city"), result.getString("state"), Integer.parseInt(result.getString("zip")));
+    }
+
+    public void setInvoiceList(int patientID) throws Exception {
+        Handler sqlConnection = new Handler();
+        connection = sqlConnection.connectDB();
+
+        invoiceList.getItems().addAll();
     }
 }
