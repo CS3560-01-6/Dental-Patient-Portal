@@ -75,4 +75,15 @@ public class UpdateProfilePage {
         
     }
 
+    public void loadPatientInfo(Patient patient) {
+        firstNameInput.setText(patient.getFirstName());
+        lastNameInput.setText(patient.getLastName());
+        phoneNumberInput.setText(patient.getPhoneNumber());
+        emailInput.setText(patient.getEmail());
+        addressLine1Input.setText(patient.getAddress().getAddressLine1());
+        addressLine2Input.setText(patient.getAddress().getAddressLine2());
+        cityInput.setText(patient.getAddress().getCity());
+        stateInput.setText(patient.getAddress().getState());
+        zipInput.setText(Integer.toString(patient.getAddress().getZip()));
+    }
 }

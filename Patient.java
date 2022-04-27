@@ -89,9 +89,9 @@ public class Patient
         return patientID;
     }
 
-    public String getAddress()
+    public Address getAddress()
     {
-        return address.toString();
+        return address;
     }
 
     public String getPassword() {

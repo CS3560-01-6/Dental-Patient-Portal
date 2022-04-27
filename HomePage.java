@@ -90,12 +90,18 @@ public class HomePage {
     /* Prompts the Update Profile Page. */
     @FXML
     void updateProfile(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("src/UpdateProfileScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/UpdateProfileScene.fxml"));
+        Parent root = loader.load();
+
+        UpdateProfilePage updateProfileController = loader.getController();
+        updateProfileController.loadPatientInfo(patient);
+
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Update Profile");
         stage.setScene(scene);
         stage.show();
+
         System.out.println("Update Profile popup launched successfully.");
     }
 

@@ -71,7 +71,10 @@
                               <Label text="Date of Birth:" GridPane.rowIndex="3" />
                               <Label text="Phone Number:" GridPane.rowIndex="4" />
                               <Label text="Email:" GridPane.rowIndex="5" />
-                              <Text fx:id="patientID" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+                              <Text fx:id="patientID" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor></Text>
                               <Text fx:id="firstName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Text fx:id="lastName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Text fx:id="dateOfBirth" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
