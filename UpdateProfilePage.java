@@ -109,6 +109,9 @@ public class UpdateProfilePage {
         statement.executeUpdate(savePatient);
         statement.executeUpdate(saveAddress);
 
+        App app = new App();
+        app.refreshHome(patient); // Updates home screen to new values of patient if changes were made
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Save Changes");
         alert.setHeaderText("Profile Updated Successfully.");

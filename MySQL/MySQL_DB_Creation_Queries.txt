@@ -97,8 +97,8 @@ INSERT INTO patient VALUES(1100428,"abc123","Bob","Jones","1/2/1997","bobj123@gm
 
 # Dummy Payment Data
 /*
-INSERT INTO payment VALUES(00022343, 1452857592, "01/25/2019", 120.39, "Paid", "Credit"),
-			(00034951, 3728367751,  "--/--/----", 0.0, "Unpaid", "None"),
+INSERT INTO payment VALUES(00022343, 1452857592, "01/25/2019", 120.39, "Paid", "Card"),
+			(00034951, 3728367751,  "08/16/2021", 0.0, "Paid", "Card"),
 			(00035231, 3728579228,  "--/--/----", 0.0, "Unpaid" "None");
 
 */
@@ -113,9 +113,9 @@ INSERT INTO paymentInformation VALUES(00022343, 1234567890123456, "Bob Jones", "
 
 # Dummy Treatment Data
 /*
-INSERT INTO treatment VALUES(0021, 1100428, "Dental cleaning and X-ray", 120.39),
-				(0035, 1295928, "Dental filling", 123.90),
-				(0052, 1217502, "Wisdom tooth extraction", 202.54);
+INSERT INTO treatment VALUES(0021, 1100428, "Dental Cleaning and X-ray", 120.39),
+				(0035, 1295928, "Dental Filling", 123.90),
+				(0052, 1217502, "Wisdom Tooth Extraction", 202.54);
 
 */
 

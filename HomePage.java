@@ -125,7 +125,7 @@ public class HomePage {
         this.zip.setText(Integer.toString(address.getZip()));
     }
 
-    /* Initializes Patient */
+    /* Initializes Patient with a PatientID */
     public void setPatient(int patientID) throws Exception {
         setAddress(patientID);
 
@@ -141,6 +141,13 @@ public class HomePage {
         patient = new Patient(patientID, result.getString("password"), result.getString("fname"), result.getString("lname"), 
                             result.getString("dateofbirth"), result.getString("email"), result.getString("phonenumber"), address);
 
+        displayPatientInfo();
+    }
+
+    /* Initializes Patient with a Patient object */
+    public void setPatient(Patient patient) throws Exception {
+        this.patient = patient;
+        this.address = patient.getAddress();
         displayPatientInfo();
     }
 
