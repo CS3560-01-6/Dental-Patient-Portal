@@ -59,9 +59,11 @@ public class InvoicePage {
     }
 
     /* Loads invoice information on the invoice page. Show pay button if status is unpaid, hide pay button if status is paid */
-    public void loadInvoice(Patient patient) throws Exception {
+    public void loadInvoice(Invoice invoice) throws Exception {
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB();
+
+        
     }
 
 }

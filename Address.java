@@ -6,8 +6,7 @@ public class Address
     private String state;
     private int zip;
 
-    public Address(String addressLine1,String addressLine2, String city, String state, int zip)
-    {
+    public Address(String addressLine1,String addressLine2, String city, String state, int zip) {
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.state = state;
@@ -16,7 +15,7 @@ public class Address
     }
 
     public String getAddressLine1() {
-        return addressLine1;
+        return this.addressLine1;
     }
 
     public void setAddressLine1(String addressLine1) {
@@ -24,7 +23,7 @@ public class Address
     }
 
     public String getAddressLine2() {
-        return addressLine2;
+        return this.addressLine2;
     }
 
     public void setAddressLine2(String addressLine2) {
@@ -32,7 +31,7 @@ public class Address
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public void setCity(String city) {
@@ -40,7 +39,7 @@ public class Address
     }
 
     public String getState() {
-        return state;
+        return this.state;
     }
 
     public void setState(String state) {
@@ -48,10 +47,11 @@ public class Address
     }
 
     public int getZip() {
-        return zip;
+        return this.zip;
     }
 
     public void setZip(int zip) {
         this.zip = zip;
     }
+
 }

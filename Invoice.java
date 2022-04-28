@@ -4,47 +4,54 @@ public class Invoice
     private double totalCost;
     private String paymentDueDate;
     private Patient patient;
+    private Treatment treatment;
 
-    public Invoice(int invoiceId, double totalCost, String paymentDueDate, Patient patient)
-    {
+    public Invoice(int invoiceId, double totalCost, String paymentDueDate, Patient patient, Treatment treatment) {
         this.invoiceId = invoiceId;
         this.totalCost = totalCost;
         this.paymentDueDate = paymentDueDate;
         this.patient = patient;
-    }
-
-    public void setTotalCost(double totalCost)
-    {
-        this.totalCost = totalCost;
-    }
-
-    public void setPaymentDueDate(String paymentDueDate)
-    {
-        this.paymentDueDate = paymentDueDate;
-    }
-
-    public void setPatient(Patient patient)
-    {
-        this.patient = patient;
+        this.treatment = treatment;
     }
 
     public int getInvoiceId() {
-        return invoiceId;
+        return this.invoiceId;
     }
 
-    public double getTotalCost()
-    {
-        return totalCost;
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
-    public String getPaymentDueDate()
-    {
-        return paymentDueDate;
+    public double getTotalCost() {
+        return this.totalCost;
     }
 
-    public Patient getPatient()
-    {
-        return patient;
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public String getPaymentDueDate() {
+        return this.paymentDueDate;
+    }
+
+    public void setPaymentDueDate(String paymentDueDate) {
+        this.paymentDueDate = paymentDueDate;
+    }
+
+    public Patient getPatient() {
+        return this.patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Treatment getTreatment() {
+        return this.treatment;
+    }
+
+    public void setTreatment(Treatment treatment) {
+        this.treatment = treatment;
     }
 
 }

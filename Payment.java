@@ -1,28 +1,17 @@
 public class Payment
 {
-    private String data;
     private int amount;
     private boolean paidStatus;
-    private Treatment service;
-    private String paymentDueDate;
+    private Invoice invoice;
+    private String datePaid;
     private String paymentType;
 
-    public Payment(String data, int amount, boolean paidStatus, Treatment service, String paymentDueDate, String paymentType)
-    {
-        this.data = data;
+    public Payment(int amount, boolean paidStatus, Invoice invoice, String datePaid, String paymentType) {
         this.amount = amount;
         this.paidStatus = paidStatus;
-        this.service = service;
-        this.paymentDueDate = paymentDueDate;
+        this.invoice = invoice;
+        this.datePaid = datePaid;
         this.paymentType = paymentType;
-    }
-
-    public String getData() {
-        return this.data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 
     public int getAmount() {
@@ -45,20 +34,20 @@ public class Payment
         this.paidStatus = paidStatus;
     }
 
-    public Treatment getService() {
-        return this.service;
+    public Invoice getInvoice() {
+        return this.invoice;
     }
 
-    public void setService(Treatment service) {
-        this.service = service;
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
-    public String getPaymentDueDate() {
-        return this.paymentDueDate;
+    public String getDatePaid() {
+        return this.datePaid;
     }
 
-    public void setPaymentDueDate(String paymentDueDate) {
-        this.paymentDueDate = paymentDueDate;
+    public void setDatePaid(String datePaid) {
+        this.datePaid = datePaid;
     }
 
     public String getPaymentType() {

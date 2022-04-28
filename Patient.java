@@ -9,8 +9,7 @@ public class Patient
     private Address address;
     private String password;
 
-    public Patient(int patientID, String password, String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, Address address)
-    {
+    public Patient(int patientID, String password, String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, Address address) {
         this.patientID = patientID;
         this.password = password;
         this.firstName = firstName;
@@ -25,80 +24,67 @@ public class Patient
         this.patientID = patientID;
     }
 
-    public void setFirstName(String firstName)
-    {
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName)
-    {
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public void setDateOfBirth(String dateOfBirth)
-    {
+    public String getDateOfBirth() {
+        return this.dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setEmail(String email)
-    {
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setPatientID(int patientID)
-    {
+    public int getPatientID() {
+        return this.patientID;
+    }
+
+    public void setPatientID(int patientID) {
         this.patientID = patientID;
     }
 
-    public void setAddress(Address address)
-    {
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public String getDateOfBirth()
-    {
-        return dateOfBirth;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public String getPhoneNumber() 
-    {
-        return phoneNumber;
-    }
-
-    public int getPatientID()
-    {
-        return patientID;
-    }
-
-    public Address getAddress()
-    {
-        return address;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }
