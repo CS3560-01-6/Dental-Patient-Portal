@@ -1,3 +1,5 @@
+import java.sql.Connection;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -42,6 +44,8 @@ public class InvoicePage {
     @FXML
     private Label treatmentName;
 
+    Connection connection = null;
+
     @FXML
     void payInvoice(ActionEvent event) {
 
@@ -49,7 +53,12 @@ public class InvoicePage {
 
     @FXML
     void returnToInvoiceList(ActionEvent event) {
+        
+    }
 
+    public void loadInvoice(Patient patient) throws Exception {
+        Handler sqlConnection = new Handler();
+        connection = sqlConnection.connectDB();
     }
 
 }

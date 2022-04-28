@@ -29,7 +29,7 @@ public class LoginPage {
     }
 
     /* Checks the login using Patient ID and Password. */
-     private void checkLogin() throws Exception {
+     private void checkLogin() {
         try
         {
             App app = new App();

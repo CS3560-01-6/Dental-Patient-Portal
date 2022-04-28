@@ -15,7 +15,7 @@ public class PaymentInformation
         this.securityCode = securityCode;
     }
 
-    public void updatePayment(int cardNumber, String nameOncard, String expDate, int securityCode)
+    public void setPayment(int cardNumber, String nameOncard, String expDate, int securityCode)
     {
         this.cardNumber = cardNumber;
         this.nameOnCard = nameOncard;
@@ -23,22 +23,22 @@ public class PaymentInformation
         this.securityCode = securityCode;
     }
 
-    public void updateCardName(int cardNumber)
+    public void setCardName(int cardNumber)
     {
         this.cardNumber = cardNumber;
     }
 
-    public void updatePaymentName(String nameOnCard)
+    public void setPaymentName(String nameOnCard)
     {
         this.nameOnCard = nameOnCard;
     }
 
-    public void updateExpDate(String expDate)
+    public void setExpDate(String expDate)
     {
         this.expDate = expDate;
     }
 
-    public void updateSecurityCode(int securityCode)
+    public void setSecurityCode(int securityCode)
     {
         this.securityCode = securityCode;
     }
@@ -66,10 +66,5 @@ public class PaymentInformation
     public int getSecurityCode()
     {
         return securityCode;
-    }
-
-    public String toString()
-    {
-        return nameOnCard + "\n" + cardNumber + "\n" + expDate + "\t" + securityCode + "\n";
     }
 }

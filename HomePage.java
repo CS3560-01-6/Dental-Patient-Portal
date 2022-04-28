@@ -166,10 +166,15 @@ public class HomePage {
         address = new Address(result.getString("addressLine1"), result.getString("addressLine2"), result.getString("city"), result.getString("state"), Integer.parseInt(result.getString("zip")));
     }
 
-    public void setInvoiceList(int patientID) throws Exception {
+    public void setInvoiceList(Patient patient) throws Exception {
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB();
 
-        invoiceList.getItems().addAll();
+        // SQL query to get all invoices pertaining to patient in database
+        String getInvoices = "";
+    }
+
+    public void loadInvoiceList(int patientID) throws Exception {
+        
     }
 }

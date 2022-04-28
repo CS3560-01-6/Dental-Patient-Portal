@@ -54,9 +54,4 @@ public class Address
     public void setZip(int zip) {
         this.zip = zip;
     }
-
-    public String toString()
-    {
-        return addressLine1 + ", " + addressLine2 + "\n" + city + "\t" + state + "\n" + zip + "\n";
-    }
 }

@@ -117,6 +117,7 @@ public class UpdateProfilePage {
         System.out.println("User Updated Profile.");
     }
 
+    /* Patient info is loaded as default on update profile page */
     public void loadPatientInfo(Patient patient, Address address) {
         this.patient = patient;
         this.address = address;
