@@ -33,7 +33,7 @@ public class App extends Application {
         System.out.println(fxmlFile + " File Loaded.");
     }
 
-    /* Sends user to the home page */
+    /* Sends user to the home page with patient information loaded */
     public void loadHome(Patient patient) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("src/HomeScene.fxml"));
         Parent root = loader.load();

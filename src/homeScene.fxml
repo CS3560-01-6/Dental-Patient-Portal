@@ -25,7 +25,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePage">
    <top>
-      <Label alignment="TOP_LEFT" opacity="0.75" prefHeight="47.0" prefWidth="592.0" style="-fx-background-color: #FFFFFF;" text="                Cal Poly Pomona Dental Patient Portal" textAlignment="CENTER" textFill="#2c7630" wrapText="true" BorderPane.alignment="CENTER">
+      <Label alignment="TOP_LEFT" opacity="0.75" prefHeight="47.0" prefWidth="592.0" style="-fx-background-color: #FFFFFF;" text=" Cal Poly Pomona Dental Patient Portal" textAlignment="CENTER" textFill="#2c7630" wrapText="true" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -182,7 +182,14 @@
             <Button fx:id="logoutButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent; -fx-border-color: #2C7630; -fx-border-radius: 3; -fx-background-radius: 3;" styleClass="mainButton" text="Logout" textAlignment="RIGHT" textFill="#2c7630">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </children>
          <BorderPane.margin>
             <Insets right="10.0" />

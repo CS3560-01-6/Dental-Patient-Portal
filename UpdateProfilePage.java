@@ -1,8 +1,6 @@
 import java.sql.*;
 import java.util.EventListener;
 
-import com.mysql.cj.xdevapi.Result;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

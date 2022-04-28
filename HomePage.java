@@ -128,11 +128,11 @@ public class HomePage {
     /* Initializes Patient with a PatientID */
     public void setPatient(Patient patient) throws Exception {
 
-        if(patient.getFirstName() != null) {
+        if(patient.getFirstName() != null) { // patient already logged in
             this.patient = patient;
             this.address = patient.getAddress();
             displayPatientInfo();
-        } else {
+        } else { // new patient logging in
             setAddress(patient.getPatientID());
 
             Handler sqlConnection = new Handler();

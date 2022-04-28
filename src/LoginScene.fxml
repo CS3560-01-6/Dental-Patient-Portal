@@ -25,17 +25,22 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="302.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="patientID" layoutX="24.0" layoutY="143.0" promptText="Patient ID">
+            <TextField fx:id="patientID" layoutX="24.0" layoutY="165.0" promptText="Patient ID">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
             <PasswordField fx:id="password" layoutX="24.0" layoutY="200.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" />
-            <Label alignment="TOP_LEFT" layoutX="26.0" layoutY="183.0" prefHeight="17.0" prefWidth="111.0" text="Password:" />
-            <Label layoutX="26.0" layoutY="126.0" prefHeight="17.0" prefWidth="152.0" text="Patient ID:" />
-            <Button fx:id="loginButton" layoutX="76.0" layoutY="242.0" mnemonicParsing="false" onAction="#patientLogin" style="-fx-background-color: #2C7630;" text="Login" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="66.0" layoutY="234.0" mnemonicParsing="false" onAction="#patientLogin" style="-fx-background-color: #2C7630;" text="Login" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" opacity="0.5" preserveRatio="true">
+                     <image>
+                        <Image url="@img/login.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Label fx:id="wrongLogin" layoutX="26.0" layoutY="225.0" prefHeight="17.0" prefWidth="228.0" textFill="#c61010" />
          </children>
       </AnchorPane>
