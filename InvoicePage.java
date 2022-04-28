@@ -46,16 +46,19 @@ public class InvoicePage {
 
     Connection connection = null;
 
+    /* Prompts the page/popup for Payment Method. (Functionality of Pay Button) */
     @FXML
     void payInvoice(ActionEvent event) {
 
     }
 
+    /* Brings screen back to the list of invoices in home page. (Functionality of return button) */
     @FXML
     void returnToInvoiceList(ActionEvent event) {
         
     }
 
+    /* Loads invoice information on the invoice page. Show pay button if status is unpaid, hide pay button if status is paid */
     public void loadInvoice(Patient patient) throws Exception {
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB();
