@@ -34,18 +34,7 @@ public class App extends Application {
     }
 
     /* Sends user to the home page */
-    public void goToHome(String patientID) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/HomeScene.fxml"));
-        Parent root = loader.load();
-
-        HomePage homePageController = loader.getController();
-        homePageController.setPatient(Integer.parseInt(patientID));
-
-        stg.getScene().setRoot(root);
-        System.out.println("Patient Loaded Home Screen.");
-    }
-
-    public void refreshHome(Patient patient) throws Exception {
+    public void loadHome(Patient patient) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("src/HomeScene.fxml"));
         Parent root = loader.load();
 

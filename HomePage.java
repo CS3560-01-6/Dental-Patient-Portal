@@ -126,29 +126,30 @@ public class HomePage {
     }
 
     /* Initializes Patient with a PatientID */
-    public void setPatient(int patientID) throws Exception {
-        setAddress(patientID);
-
-        Handler sqlConnection = new Handler();
-        connection = sqlConnection.connectDB();
-
-        String getPatientInfo = "SELECT * FROM patient WHERE patientID = '" + patientID + "'";
-
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(getPatientInfo);
-        
-        result.next();
-        patient = new Patient(patientID, result.getString("password"), result.getString("fname"), result.getString("lname"), 
-                            result.getString("dateofbirth"), result.getString("email"), result.getString("phonenumber"), address);
-
-        displayPatientInfo();
-    }
-
-    /* Initializes Patient with a Patient object */
     public void setPatient(Patient patient) throws Exception {
-        this.patient = patient;
-        this.address = patient.getAddress();
-        displayPatientInfo();
+
+        if(patient.getFirstName() != null) {
+            this.patient = patient;
+            this.address = patient.getAddress();
+            displayPatientInfo();
+        } else {
+            setAddress(patient.getPatientID());
+
+            Handler sqlConnection = new Handler();
+            connection = sqlConnection.connectDB();
+    
+            String getPatientInfo = "SELECT * FROM patient WHERE patientID = '" + patient.getPatientID() + "'";
+    
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(getPatientInfo);
+            
+            result.next();
+            this.patient = new Patient(patient.getPatientID(), result.getString("password"), result.getString("fname"), result.getString("lname"), 
+                                result.getString("dateofbirth"), result.getString("email"), result.getString("phonenumber"), address);
+    
+            displayPatientInfo();
+        }
+        
     }
 
     /* Initializes Address */

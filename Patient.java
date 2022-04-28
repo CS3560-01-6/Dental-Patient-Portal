@@ -21,6 +21,10 @@ public class Patient
         this.address = address;
     }
 
+    public Patient(int patientID) {
+        this.patientID = patientID;
+    }
+
     public void setFirstName(String firstName)
     {
         this.firstName = firstName;
