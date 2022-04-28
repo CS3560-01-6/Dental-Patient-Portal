@@ -119,6 +119,16 @@ INSERT INTO treatment VALUES(0021, 1100428, "Dental Cleaning and X-ray", 120.39)
 
 */
 
+# Dummy Invoice Data
+/*
+INSERT INTO invoice VALUES(1452857592, 1100428, 120.39, 0.0, "02/04/2019", "Paid"),
+		(3728367751, 1295928, 123.90, 123.90, "05/24/2022", "Unpaid"),
+		(3728579228, 1217502, 202.54, 202.54, "07/30/2022", "Unpaid");
+
+*/
+
+
+
 ############ DROP TABLES ############
 
 # Order in which to drop tables (without creating a FK dependency error) 
