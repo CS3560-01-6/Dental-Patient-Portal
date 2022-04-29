@@ -1,10 +1,11 @@
 public class Treatment 
 {
+    private int treatmentID;
     private String service;
     private double cost;
 
-    public Treatment(String service, double cost)
-    {
+    public Treatment(int treatmentID, String service, double cost) {
+        this.treatmentID = treatmentID;
         this.service = service;
         this.cost = cost;
     }
@@ -24,4 +25,13 @@ public class Treatment
     public void setCost(double cost) {
         this.cost = cost;
     }
+
+    public int getTreatmentID() {
+        return this.treatmentID;
+    }
+
+    public void setTreatmentID(int treatmentID) {
+        this.treatmentID = treatmentID;
+    }
+
 }
