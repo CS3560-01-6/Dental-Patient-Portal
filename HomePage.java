@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import com.mysql.cj.protocol.Resultset;
+
 import javafx.beans.Observable;
 import javafx.collections.*;
 import javafx.collections.ObservableList;
@@ -170,6 +172,7 @@ public class HomePage {
         address = new Address(result.getString("addressLine1"), result.getString("addressLine2"), result.getString("city"), result.getString("state"), Integer.parseInt(result.getString("zip")));
     }
 
+    /* Initializes list of invoices */
     public void setInvoiceList(Patient patient) throws Exception {
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB();
@@ -180,15 +183,33 @@ public class HomePage {
         ResultSet result = statement.executeQuery(getInvoices);
 
         while(result.next()) {
-            Integer invoiceId = Integer.parseInt(result.getString("invoiceID"));
+            int invoiceId = Integer.parseInt(result.getString("invoiceID"));
             Double totalCost = Double.parseDouble(result.getString("totalCost"));
             String paymentDueDate = result.getString("paymentDueBy");
             String invoiceStatus = result.getString("invoiceStatus");
+            Treatment treatment = getTreatment(invoiceId);
 
-            invoiceObservableList.add(new Invoice(invoiceId, totalCost, paymentDueDate, invoiceStatus, patient, treatment)));
+            invoiceObservableList.add(new Invoice(invoiceId, totalCost, paymentDueDate, invoiceStatus, patient, treatment));
         }
     }
 
+    /* Retrieves treatment for a specific invoice */
+    public Treatment getTreatment(int invoiceID) throws Exception {
+        Handler sqlConnection = new Handler();
+        connection = sqlConnection.connectDB();
+
+        String getTreatmentInfo = "SELECT * FROM treatment WHERE invoiceID = '" + invoiceID + "'";
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(getTreatmentInfo);
+
+        result.next();
+        Treatment treatment = new Treatment(Integer.parseInt(result.getString("treatmentID")), result.getString("service"), Double.parseDouble(result.getString("cost")));
+
+        return treatment;
+    }
+
+    /* Loads list of invoices onto home page */
     public void loadInvoiceList(int patientID) throws Exception {
         
     }
