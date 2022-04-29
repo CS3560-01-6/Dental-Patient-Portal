@@ -3,6 +3,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javafx.beans.Observable;
+import javafx.collections.*;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,6 +81,7 @@ public class HomePage {
     Connection connection = null;
     Patient patient;
     Address address;
+    ObservableList<Invoice> invoiceObservableList = FXCollections.observableArrayList();
 
     /* Logs user out and returns back to login page */
     @FXML
@@ -171,7 +175,18 @@ public class HomePage {
         connection = sqlConnection.connectDB();
 
         // SQL query to get all invoices pertaining to patient in database
-        String getInvoices = "";
+        String getInvoices = "SELECT * FROM invoice WHERE patientID = '" + patient.getPatientID() + "'";
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(getInvoices);
+
+        while(result.next()) {
+            Integer invoiceId = Integer.parseInt(result.getString("invoiceID"));
+            Double totalCost = Double.parseDouble(result.getString("totalCost"));
+            String paymentDueDate = result.getString("paymentDueBy");
+            String invoiceStatus = result.getString("invoiceStatus");
+
+            invoiceObservableList.add(new Invoice(invoiceId, totalCost, paymentDueDate, invoiceStatus, patient, treatment)));
+        }
     }
 
     public void loadInvoiceList(int patientID) throws Exception {
