@@ -3,13 +3,15 @@ public class Invoice
     private int invoiceId;
     private double totalCost;
     private String paymentDueDate;
+    private String invoiceStatus;
     private Patient patient;
     private Treatment treatment;
 
-    public Invoice(int invoiceId, double totalCost, String paymentDueDate, Patient patient, Treatment treatment) {
+    public Invoice(int invoiceId, double totalCost, String paymentDueDate, String invoiceStatus, Patient patient, Treatment treatment) {
         this.invoiceId = invoiceId;
         this.totalCost = totalCost;
         this.paymentDueDate = paymentDueDate;
+        this.invoiceStatus = invoiceStatus;
         this.patient = patient;
         this.treatment = treatment;
     }
@@ -38,6 +40,14 @@ public class Invoice
         this.paymentDueDate = paymentDueDate;
     }
 
+    public String getInvoiceStatus() {
+        return this.invoiceStatus;
+    }
+
+    public void setInvoiceStatus(String invoiceStatus) {
+        this.invoiceStatus = invoiceStatus;
+    }
+
     public Patient getPatient() {
         return this.patient;
     }
@@ -53,5 +63,6 @@ public class Invoice
     public void setTreatment(Treatment treatment) {
         this.treatment = treatment;
     }
+    
 
 }
