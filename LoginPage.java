@@ -45,7 +45,7 @@ public class LoginPage {
                 if(queryResult.getInt(1) == 1) { // match is found
                     System.out.println("Patient logged in successfully.");
                     Patient patient = new Patient(Integer.parseInt(patientID.getText()));
-                    app.loadHome(patient); // brings user to patient home page
+                    app.loadHome(patient); // brings user to home page
                 } else if (patientID.getText().isEmpty() || password.getText().isEmpty()) { // patient id and password fields are empty
                     wrongLogin.setText("Missing required login fields.");
                 } else {

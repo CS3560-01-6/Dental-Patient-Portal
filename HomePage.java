@@ -3,9 +3,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.mysql.cj.protocol.Resultset;
-
-import javafx.beans.Observable;
 import javafx.collections.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -85,6 +82,18 @@ public class HomePage {
     Address address;
     ObservableList<Invoice> invoiceObservableList = FXCollections.observableArrayList();
 
+    public void initializeHomePage(Patient patient) throws Exception {
+        if(patient.getFirstName() != null) { // patient already logged in
+            this.patient = patient;
+            this.address = patient.getAddress();
+        } else { // new patient logging in
+            setAddress(patient.getPatientID());
+            setPatient(patient);
+        }
+        setInvoiceList();
+        displayPatientProfile();
+    }
+
     /* Logs user out and returns back to login page */
     @FXML
     void logout(ActionEvent event) throws IOException {
@@ -112,8 +121,13 @@ public class HomePage {
         System.out.println("Update Profile popup launched successfully.");
     }
 
+    /* Displays list of invoices of patient onto home page */
+    public void displayInvoiceList() throws Exception {
+    
+    }
+
     /* Displays default patient information on home page. */
-    public void displayPatientInfo() throws Exception {
+    public void displayPatientProfile() throws Exception {
 
         // displays default patient address information
         this.patientID.setText(Integer.toString(patient.getPatientID()));
@@ -133,29 +147,17 @@ public class HomePage {
 
     /* Initializes Patient with a PatientID */
     public void setPatient(Patient patient) throws Exception {
+        Handler sqlConnection = new Handler();
+        connection = sqlConnection.connectDB();
 
-        if(patient.getFirstName() != null) { // patient already logged in
-            this.patient = patient;
-            this.address = patient.getAddress();
-            displayPatientInfo();
-        } else { // new patient logging in
-            setAddress(patient.getPatientID());
+        String getPatientInfo = "SELECT * FROM patient WHERE patientID = '" + patient.getPatientID() + "'";
 
-            Handler sqlConnection = new Handler();
-            connection = sqlConnection.connectDB();
-    
-            String getPatientInfo = "SELECT * FROM patient WHERE patientID = '" + patient.getPatientID() + "'";
-    
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(getPatientInfo);
-            
-            result.next();
-            this.patient = new Patient(patient.getPatientID(), result.getString("password"), result.getString("fname"), result.getString("lname"), 
-                                result.getString("dateofbirth"), result.getString("email"), result.getString("phonenumber"), address);
-    
-            displayPatientInfo();
-        }
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(getPatientInfo);
         
+        result.next();
+        this.patient = new Patient(patient.getPatientID(), result.getString("password"), result.getString("fname"), result.getString("lname"), 
+                            result.getString("dateofbirth"), result.getString("email"), result.getString("phonenumber"), address);
     }
 
     /* Initializes Address */
@@ -173,7 +175,7 @@ public class HomePage {
     }
 
     /* Initializes list of invoices */
-    public void setInvoiceList(Patient patient) throws Exception {
+    public void setInvoiceList() throws Exception {
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB();
 
@@ -191,6 +193,8 @@ public class HomePage {
 
             invoiceObservableList.add(new Invoice(invoiceId, totalCost, paymentDueDate, invoiceStatus, patient, treatment));
         }
+        invoiceList.getItems().addAll(invoiceObservableList);
+        System.out.println("Successfully set list of invoices.");
     }
 
     /* Retrieves treatment for a specific invoice */
@@ -207,10 +211,5 @@ public class HomePage {
         Treatment treatment = new Treatment(Integer.parseInt(result.getString("treatmentID")), result.getString("service"), Double.parseDouble(result.getString("cost")));
 
         return treatment;
-    }
-
-    /* Loads list of invoices onto home page */
-    public void loadInvoiceList(int patientID) throws Exception {
-        
     }
 }
