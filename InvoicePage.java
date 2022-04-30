@@ -9,6 +9,9 @@ import javafx.scene.text.Text;
 public class InvoicePage {
 
     @FXML
+    private Label cityStateZip;
+
+    @FXML
     private Text invoiceID;
 
     @FXML
@@ -60,10 +63,17 @@ public class InvoicePage {
 
     /* Loads invoice information on the invoice page. Show pay button if status is unpaid, hide pay button if status is paid */
     public void loadInvoice(Invoice invoice) throws Exception {
-        Handler sqlConnection = new Handler();
-        connection = sqlConnection.connectDB();
-
-        
+        invoiceID.setText(Integer.toString(invoice.getInvoiceId()));
+        invoicePaymentDueDate.setText((invoice.getPaymentDueDate()));
+        invoiceStatus.setText(invoice.getInvoiceStatus());
+        invoiceTotal.setText(Double.toString(invoice.getTotalCost()));
+        patientName.setText(invoice.getPatient().getFirstName() + " " + invoice.getPatient().getLastName());
+        patientEmail.setText(invoice.getPatient().getEmail());
+        patientPhone.setText(invoice.getPatient().getPhoneNumber());
+        patientAddress.setText(invoice.getPatient().getAddress().getAddressLine1());
+        cityStateZip.setText(invoice.getPatient().getAddress().getCity() + ", " + invoice.getPatient().getAddress().getState() + " " + invoice.getPatient().getAddress().getZip());
+        treatmentName.setText(invoice.getTreatment().getService());
+        treatmentCost.setText(Double.toString(invoice.getTreatment().getCost()));
     }
 
 }

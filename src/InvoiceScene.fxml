@@ -91,15 +91,30 @@
                               </Label>
                            </children>
                         </VBox>
-                        <Label layoutX="328.0" layoutY="14.0" text="Bill To">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="patientName" layoutX="328.0" layoutY="31.0" text="Patient Name" />
-                        <Label fx:id="patientPhone" layoutX="328.0" layoutY="48.0" text="Phone Number" />
-                        <Label fx:id="patientEmail" layoutX="328.0" layoutY="65.0" text="Email" />
-                        <Label fx:id="patientAddress" layoutX="329.0" layoutY="82.0" text="Address" />
+                        <VBox layoutX="320.0" prefHeight="109.0" prefWidth="190.0">
+                           <children>
+                              <Label text="Bill To:">
+                                 <padding>
+                                    <Insets top="2.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="patientName" text="Patient Name">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="patientEmail" text="Email" />
+                              <Label fx:id="patientPhone" text="Phone Number" />
+                              <Label fx:id="patientAddress" text="Address Line 1" />
+                              <Label fx:id="cityStateZip" text="City, State ZIP" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </top>

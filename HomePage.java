@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
@@ -193,7 +194,19 @@ public class HomePage {
 
             invoiceObservableList.add(new Invoice(invoiceId, totalCost, paymentDueDate, invoiceStatus, patient, treatment));
         }
-        invoiceList.getItems().addAll(invoiceObservableList);
+        invoiceList.setItems(invoiceObservableList);
+        invoiceList.setCellFactory(param -> new ListCell<Invoice>() {
+            @Override
+            protected void updateItem(Invoice invoice, boolean empty) {
+            super.updateItem(invoice, empty);
+                if (empty || invoice == null || invoice.getInvoiceId() == 0) {
+                    setText(null);
+                } else {
+                    setText(Integer.toString(invoice.getInvoiceId()));
+                }
+            }
+        });
+        // invoiceList.getItems().addAll(invoiceObservableList);
         System.out.println("Successfully set list of invoices.");
     }
 

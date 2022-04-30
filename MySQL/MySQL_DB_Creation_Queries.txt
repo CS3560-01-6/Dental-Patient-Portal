@@ -21,7 +21,6 @@ phonenumber VARCHAR(15),
 Primary Key(patientID)
 );
 
-
 # Invoice Table
 CREATE table invoice(
 invoiceID INT(10),
@@ -33,7 +32,6 @@ invoiceStatus VARCHAR(20),
 Primary Key(invoiceID),
 Foreign Key(patientID) references patient(patientID)
 );
-
 
 # Treatment Table
 CREATE table treatment(
@@ -56,6 +54,7 @@ securityCode INT(5),
 Primary Key(paymentInfoID),
 Foreign Key(patientID) References patient(patientID)
 );
+
 # Payment Table
 CREATE table payment(
 paymentID INT(20),
@@ -85,18 +84,18 @@ Foreign Key(patientID) references patient(patientID)
 
 ############ DUMMY DATA ############
 
-# Dummy Address Data 
-/* 
-INSERT INTO address VALUES(1100428,"123 West Temple Avenue","","Pomona","CA","12345"),
-						  (1295928,"123 South Ranch Drive","","Austin","TX","54321",
-                          (1217502,"456 Circle Street","","Pheonix","AZ","15123");
-*/
-
 # Dummy Patient Data
 /*
 INSERT INTO patient VALUES(1100428,"abc123","Bob","Jones","1/2/1997","bobj123@gmail.com","702-373-6874"),
 						  (1295928,"password1","Scott","Caw","3/5/1980","scaw234@hotmail.com","231-263-9721"),
                           (1217502,"mypassword","Randy","Miller","9/25/1977","rmiller@gmail.com","657-221-4402");
+*/
+
+# Dummy Address Data 
+/* 
+INSERT INTO address VALUES(1100428,"123 West Temple Avenue","","Pomona","CA","12345"),
+						  (1295928,"123 South Ranch Drive","","Austin","TX","54321"),
+                          (1217502,"456 Circle Street","","Pheonix","AZ","15123");
 */
 
 # Dummy Payment Data
@@ -152,8 +151,6 @@ INSERT INTO invoice VALUES(1452857592, 1100428, 120.39, 0.0, "02/04/2019", "Paid
 		(3295320021, 1100428, 134.59, 0.0, "10/21/2021", "Paid"),
 		(1259943433, 1100428, 134.59, 0.0, "03/04/2019", "Paid");
 */
-
-
 
 ############ DROP TABLES ############
 
