@@ -74,6 +74,10 @@ public class InvoicePage {
         cityStateZip.setText(invoice.getPatient().getAddress().getCity() + ", " + invoice.getPatient().getAddress().getState() + " " + invoice.getPatient().getAddress().getZip());
         treatmentName.setText(invoice.getTreatment().getService());
         treatmentCost.setText(Double.toString(invoice.getTreatment().getCost()));
+
+        if(invoice.getInvoiceStatus().equalsIgnoreCase("paid")) {
+            payButton.setVisible(false);;
+        }
     }
 
 }
