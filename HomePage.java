@@ -6,17 +6,11 @@ import java.sql.Statement;
 import javafx.collections.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 
 public class HomePage {
@@ -122,9 +116,9 @@ public class HomePage {
         System.out.println("Update Profile popup launched successfully.");
     }
 
-    /* Displays list of invoices of patient onto home page */
-    public void displayInvoiceList() throws Exception {
-    
+    /* Changes scene to invoice information view page */
+    public static void displayInvoice(Invoice invoice) throws Exception {
+        System.out.println("Patient viewing Invoice " + invoice.getInvoiceId());
     }
 
     /* Displays default patient information on home page. */
@@ -175,6 +169,40 @@ public class HomePage {
         address = new Address(result.getString("addressLine1"), result.getString("addressLine2"), result.getString("city"), result.getString("state"), Integer.parseInt(result.getString("zip")));
     }
 
+    static class Cell extends ListCell<Invoice> {
+        HBox hbox = new HBox();
+        Label label = new Label("");
+        Pane pane = new Pane();
+        Button button = new Button("View");
+        Invoice invoice;
+
+        public Cell() {
+            super();
+
+            hbox.getChildren().addAll(label, button);
+            button.setStyle("-fx-background-color:  #2C7630; -fx-text-fill: white");
+            button.setOnAction(event -> {
+                try {
+                    displayInvoice(invoice);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }); 
+        }
+
+        @Override
+        protected void updateItem(Invoice invoice, boolean empty) {
+            super.updateItem(invoice, empty);
+            setText(null);
+            setGraphic(null);
+            this.invoice = invoice;
+            if (invoice != null && !empty) {
+                setText("\t" + Integer.toString(invoice.getInvoiceId()));
+                setGraphic(hbox);
+            }
+        }
+    }
+
     /* Initializes list of invoices */
     public void setInvoiceList() throws Exception {
         Handler sqlConnection = new Handler();
@@ -195,18 +223,7 @@ public class HomePage {
             invoiceObservableList.add(new Invoice(invoiceId, totalCost, paymentDueDate, invoiceStatus, patient, treatment));
         }
         invoiceList.setItems(invoiceObservableList);
-        invoiceList.setCellFactory(param -> new ListCell<Invoice>() {
-            @Override
-            protected void updateItem(Invoice invoice, boolean empty) {
-            super.updateItem(invoice, empty);
-                if (empty || invoice == null || invoice.getInvoiceId() == 0) {
-                    setText(null);
-                } else {
-                    setText(Integer.toString(invoice.getInvoiceId()));
-                }
-            }
-        });
-        // invoiceList.getItems().addAll(invoiceObservableList);
+        invoiceList.setCellFactory(param -> new Cell());
         System.out.println("Successfully set list of invoices.");
     }
 
