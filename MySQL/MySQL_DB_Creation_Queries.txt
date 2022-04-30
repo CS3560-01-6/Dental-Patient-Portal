@@ -18,20 +18,22 @@ lname VARCHAR(50),
 dateofbirth VARCHAR(10),
 email VARCHAR(100),
 phonenumber VARCHAR(15),
-Primary Key(patientID) 
-Foreign Key(paymentID) references paymentInformation(paymentID)
+Primary Key(patientID)
 );
+
 
 # Invoice Table
 CREATE table invoice(
 invoiceID INT(10),
 patientID INT(7),
 totalcost decimal(10,2),
+remainingFee decimal(10,2),
 paymentDueBy VARCHAR(10),
 invoiceStatus VARCHAR(20),
 Primary Key(invoiceID),
 Foreign Key(patientID) references patient(patientID)
 );
+
 
 # Treatment Table
 CREATE table treatment(
@@ -43,27 +45,29 @@ Primary Key(treatmentID),
 Foreign Key(invoiceID) references invoice(invoiceID)
 );
 
+# PaymentInformation Table
+CREATE table paymentInformation(
+paymentInfoID INT(20),
+patientID INT(7),
+cardNumber INT(20),
+cardHolder VARCHAR(50),
+expDate VARCHAR(10),
+securityCode INT(5),
+Primary Key(paymentInfoID),
+Foreign Key(patientID) References patient(patientID)
+);
 # Payment Table
 CREATE table payment(
 paymentID INT(20),
 invoiceID INT(10),
+paymentInfoID INT(20),
 datePaid VARCHAR(10),
 amount decimal(10,2),
 paymentStatus VARCHAR(20),
 paymentType VARCHAR(20),
 Primary Key(paymentID),
-Foreign Key(invoiceID) references invoice(invoiceID)
-);
-
-# PaymentInformation Table
-CREATE table paymentInformation(
-paymentID INT(20),
-cardNumber INT(20),
-cardHolder VARCHAR(50),
-expDate VARCHAR(10),
-securityCode INT(5),
-Primary Key(paymentID),
-Foreign Key(paymentID) References payment(paymentID)
+Foreign Key(invoiceID) references invoice(invoiceID),
+Foreign Key(paymentInfoID) references paymentInformation(paymentInfoID)
 );
 
 # Address Table
@@ -77,7 +81,7 @@ ZIP VARCHAR(5),
 Primary Key(patientID),
 Foreign Key(patientID) references patient(patientID)
 );
-*/ 
+*/
 
 ############ DUMMY DATA ############
 
