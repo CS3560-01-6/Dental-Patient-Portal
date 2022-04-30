@@ -21,6 +21,7 @@ phonenumber VARCHAR(15),
 Primary Key(patientID)
 );
 
+
 # Invoice Table
 CREATE table invoice(
 invoiceID INT(10),
@@ -32,6 +33,7 @@ invoiceStatus VARCHAR(20),
 Primary Key(invoiceID),
 Foreign Key(patientID) references patient(patientID)
 );
+
 
 # Treatment Table
 CREATE table treatment(
@@ -47,14 +49,13 @@ Foreign Key(invoiceID) references invoice(invoiceID)
 CREATE table paymentInformation(
 paymentInfoID INT(20),
 patientID INT(7),
-cardNumber INT(20),
+cardNumber BIGINT(20),
 cardHolder VARCHAR(50),
 expDate VARCHAR(10),
 securityCode INT(5),
 Primary Key(paymentInfoID),
 Foreign Key(patientID) References patient(patientID)
 );
-
 # Payment Table
 CREATE table payment(
 paymentID INT(20),
@@ -98,66 +99,62 @@ INSERT INTO address VALUES(1100428,"123 West Temple Avenue","","Pomona","CA","12
                           (1217502,"456 Circle Street","","Pheonix","AZ","15123");
 */
 
-# Dummy Payment Data
+# Dummy Invoice Data
 /*
-INSERT INTO payment VALUES(00022343, 1452857592, "01/25/2019", 120.39, "Paid", "Card"),
-			(00034951, 3728367751,  "08/16/2021", 0.0, "Paid", "Card"),
-			(00035231, 3728579228,  "--/--/----", 0.0, "Unpaid", "None"),
-			(00013941, 1152796348,  "11/08/2018", 120.80, "Paid", "Card"),
-			(00028741, 2423998014,  "08/30/2021", 267.34, "Paid", "Card"),
-			(00027431, 2277149509,  "05/23/2021", 134.45, "Paid", "Card"),
-			(00025995, 2039384451,  "10/21/2020", 509.32, "Paid", "Card"),
-			(00031004, 3295320021,  "10/01/2021", 134.59, "Paid", "Card"),
-			(00014540, 1259943433,  "02/21/2019", 134.59, "Paid", "Card");
-
+INSERT INTO invoice VALUES(1452857592, 1100428, 120.39, 0.0, "02/04/2019", "Paid"),
+		(1728367751, 1295928, 123.90, 123.90, "05/24/2022", "Unpaid"),
+		(1728579228, 1217502, 202.54, 202.54, "07/30/2022", "Unpaid"),
+		(1152796348, 1295928, 120.80, 0.0, "12/09/2018", "Paid"),
+		(1423998014, 1217502, 267.34, 0.0, "09/25/2021", "Paid"),
+		(1277149509, 1217502, 134.45, 0.0, "06/12/2021", "Paid"),
+		(1039384451, 1295928, 509.32, 0.0, "10/30/2020", "Paid"),
+		(1295320021, 1100428, 134.59, 0.0, "10/21/2021", "Paid"),
+		(1259943433, 1100428, 134.59, 0.0, "03/04/2019", "Paid");
 */
 
 # Dummy PaymentInformation Data
 /*
-INSERT INTO paymentInformation VALUES(00022343, 1234567890123456, "Bob Jones", "03/25", 123),
-		(00034951, 4531379544848231, "Scott Caw", "05/29", 555),
-		(00035231, 7982867234560132, "Randy miller", "07/30", 456),
-		(00013941, 7982867234560132, "Randy miller", "07/30", 456),
-		(00028741, 4531379544848231, "Scott Caw", "05/29", 555),
-		(00027431, 4531379544848231, "Scott Caw", "05/29", 555),
-		(00025995, 7982867234560132, "Randy miller", "07/30", 456),
-		(00031004, 1234567890123456, "Bob Jones", "03/25", 123),
-		(00014540, 1234567890123456, "Bob Jones", "03/25", 123);
+INSERT INTO paymentInformation VALUES(100000001, 1100428, 1234567890123456, "Bob Jones", "03/25", 123),
+		(100000002, 1295928, 4531379544848231, "Scott Caw", "05/29", 555),
+		(100000003, 1217502, 7982867234560132, "Randy miller", "07/30", 456);
+
+*/
+
+# Dummy Payment Data
+/*
+INSERT INTO payment VALUES(00022343, 1452857592, 100000001, "01/25/2019", 120.39, "Paid", "Card"),
+			(00034951, 1728367751, 100000002,  "--/--/----", 0.0, "Unpaid", "None"),
+			(00035231, 1728579228, 100000003, "--/--/----", 0.0, "Unpaid", "None"),
+			(00013941, 1152796348, 100000002, "11/08/2018", 120.80, "Paid", "Card"),
+			(00028741, 1423998014, 100000003, "08/30/2021", 267.34, "Paid", "Card"),
+			(00027431, 1277149509, 100000003, "05/23/2021", 134.45, "Paid", "Card"),
+			(00025995, 1039384451, 100000002, "10/21/2020", 509.32, "Paid", "Card"),
+			(00031004, 1295320021, 100000001,  "10/01/2021", 134.59, "Paid", "Card"),
+			(00014540, 1259943433, 100000001,  "02/21/2019", 134.59, "Paid", "Card");
 
 */
 
 # Dummy Treatment Data
 /*
-INSERT INTO treatment VALUES(0021, 1100428, "Dental Cleaning and X-ray", 120.39),
-				(0035, 1295928, "Dental Filling", 123.90),
-				(0052, 1217502, "Wisdom Tooth Extraction", 202.54),
-				(0035, 1295928, "Dental Filling", 120.80),
-				(0051, 1217502, "Tooth Extraction", 202.54),
-				(0035, 1217502, "Dental Filling", 134.45),
-				(0045, 1295928, "Root Canal-Incisor", 509.32),
-				(0035, 1100428, "Dental Filling", 134.45),
-				(0035, 1100428, "Dental Cleaning and X-ray", 134.45);
+INSERT INTO treatment VALUES(0001, 1452857592, "Dental Cleaning and X-ray", 120.39),
+				(0002, 1728367751, "Dental Filling", 123.90),
+				(0003, 1728579228, "Wisdom Tooth Extraction", 202.54),
+				(0004, 1152796348, "Dental Filling", 120.80),
+				(0005, 1423998014, "Tooth Extraction", 202.54),
+				(0006, 1277149509, "Dental Filling", 134.45),
+				(0007, 1039384451, "Root Canal-Incisor", 509.32),
+				(0008, 1295320021, "Dental Filling", 134.45),
+				(0009, 1259943433, "Dental Cleaning and X-ray", 134.45);
 */
 
-# Dummy Invoice Data
-/*
-INSERT INTO invoice VALUES(1452857592, 1100428, 120.39, 0.0, "02/04/2019", "Paid"),
-		(3728367751, 1295928, 123.90, 123.90, "05/24/2022", "Unpaid"),
-		(3728579228, 1217502, 202.54, 202.54, "07/30/2022", "Unpaid"),
-		(1152796348, 1295928, 120.80, 0.0, "12/09/2018", "Paid"),
-		(2423998014, 1217502, 267.34, 0.0, "09/25/2021", "Paid"),
-		(2277149509, 1217502, 134.45, 0.0, "06/12/2021", "Paid"),
-		(2039384451, 1295928, 509.32, 0.0, "10/30/2020", "Paid"),
-		(3295320021, 1100428, 134.59, 0.0, "10/21/2021", "Paid"),
-		(1259943433, 1100428, 134.59, 0.0, "03/04/2019", "Paid");
-*/
+
 
 ############ DROP TABLES ############
 
 # Order in which to drop tables (without creating a FK dependency error) 
-# drop table paymentinformation;
-# drop table payment;
-# drop table treatment;
-# drop table invoice;
-# drop table address;
 # drop table patient;
+# drop table invoice;
+# drop table treatment;
+# drop table paymentInformation;
+# drop table payment;
+# drop table address;
