@@ -64,5 +64,4 @@ public class Invoice
         this.treatment = treatment;
     }
     
-
 }
