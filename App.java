@@ -44,4 +44,12 @@ public class App extends Application {
         stg.getScene().setRoot(root);
         System.out.println("Patient Loaded Home Screen.");
     }
+
+    public void loadInvoice(Invoice invoice) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/HomeScene.fxml"));
+        Parent root = loader.load();
+
+        HomePage homePageController = loader.getController();
+        homePageController.displayInvoice(invoice);;
+    }
 }

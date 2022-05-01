@@ -40,6 +40,9 @@ public class HomePage {
     private TextField invoiceSearchBar;
 
     @FXML
+    private BorderPane invoicesBorderPane;
+
+    @FXML
     private Tab invoicesTab;
 
     @FXML
@@ -117,7 +120,22 @@ public class HomePage {
     }
 
     /* Changes scene to invoice information view page */
-    public static void displayInvoice(Invoice invoice) throws Exception {
+    public void displayInvoice(Invoice invoice) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/InvoiceScene.fxml"));
+        Parent root = loader.load();
+        // AnchorPane invoiceView = loader.load();
+
+        InvoicePage invoicePageController = loader.getController();
+        invoicePageController.loadInvoice(invoice);
+
+        // invoicesBorderPane.setCenter(invoiceView);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Update Profile");
+        stage.setScene(scene);
+        stage.show();
+
         System.out.println("Patient viewing Invoice " + invoice.getInvoiceId());
     }
 
@@ -183,7 +201,8 @@ public class HomePage {
             button.setStyle("-fx-background-color:  #2C7630; -fx-text-fill: white");
             button.setOnAction(event -> {
                 try {
-                    displayInvoice(invoice);
+                    App app = new App();
+                    app.loadInvoice(invoice);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
