@@ -101,8 +101,8 @@ public class UpdateProfilePage {
                             "', state = '" + address.getState() + "', zip = '" + address.getZip() + "' WHERE patientID = '" + patient.getPatientID() + "'"; 
 
         Statement statement = connection.createStatement();
-        statement.executeUpdate(savePatient);
-        statement.executeUpdate(saveAddress);
+        statement.executeUpdate(savePatient); // saves any updates made to patient profile to database
+        statement.executeUpdate(saveAddress); // saves any updates made to address to database
 
         App app = new App();
         app.loadHome(patient); // Updates home screen to new values of patient if changes were made

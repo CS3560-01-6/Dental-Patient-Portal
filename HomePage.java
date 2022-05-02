@@ -80,6 +80,7 @@ public class HomePage {
     Address address;
     ObservableList<Invoice> invoiceObservableList = FXCollections.observableArrayList();
 
+    /* Initializes Home Page with default values */
     public void initializeHomePage(Patient patient) throws Exception {
         if(patient.getFirstName() != null) { // patient already logged in
             this.patient = patient;
@@ -187,6 +188,7 @@ public class HomePage {
         address = new Address(result.getString("addressLine1"), result.getString("addressLine2"), result.getString("city"), result.getString("state"), Integer.parseInt(result.getString("zip")));
     }
 
+    /* Custom class to display view button next to list of invoices */
     static class Cell extends ListCell<Invoice> {
         HBox hbox = new HBox();
         Label label = new Label("");

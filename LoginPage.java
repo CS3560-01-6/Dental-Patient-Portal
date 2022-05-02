@@ -49,7 +49,7 @@ public class LoginPage {
                 } else if (patientID.getText().isEmpty() || password.getText().isEmpty()) { // patient id and password fields are empty
                     wrongLogin.setText("Missing required login fields.");
                 } else {
-                    wrongLogin.setText("Invalid Patient ID or Password.");
+                    wrongLogin.setText("Invalid Patient ID or Password."); // patient id and password combo is not found in database
                 }
             }
         }

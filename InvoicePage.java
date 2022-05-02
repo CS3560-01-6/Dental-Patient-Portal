@@ -80,7 +80,7 @@ public class InvoicePage {
         invoiceStage.close();
     }
 
-    /* Loads invoice information on the invoice page. Show pay button if status is unpaid, hide pay button if status is paid */
+    /* Loads invoice information on the invoice page */
     public void loadInvoice(Invoice invoice) throws Exception {
         invoiceID.setText(Integer.toString(invoice.getInvoiceId()));
         invoicePaymentDueDate.setText((invoice.getPaymentDueDate()));
@@ -95,15 +95,16 @@ public class InvoicePage {
         treatmentCost.setText("$" + Double.toString(invoice.getTreatment().getCost()));
         paidGridPane.setVisible(false);
 
-        if(invoice.getInvoiceStatus().equalsIgnoreCase("paid")) {
+        if(invoice.getInvoiceStatus().equalsIgnoreCase("paid")) { // if invoice is paid, show pay button and display payment information
             payButton.setVisible(false);
             paidGridPane.setVisible(true);
 
-            setPayment(invoice);
+            displayPayment(invoice);
         }
     }
 
-    public void setPayment(Invoice invoice) throws Exception {
+    /* Displays payment information for paid invoices */
+    public void displayPayment(Invoice invoice) throws Exception {
         Handler mysqlConnection = new Handler();
         connection = mysqlConnection.connectDB();
 
