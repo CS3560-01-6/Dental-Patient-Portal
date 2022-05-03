@@ -49,7 +49,7 @@ Foreign Key(invoiceID) references invoice(invoiceID)
 CREATE table paymentInformation(
 paymentInfoID INT(20),
 patientID INT(7),
-cardNumber BIGINT(20),
+cardNumber VARCHAR(20),
 cardHolder VARCHAR(50),
 expDate VARCHAR(10),
 securityCode INT(5),
@@ -116,9 +116,9 @@ INSERT INTO invoice VALUES(1452857592, 1100428, 120.39, 0.0, "02/04/2019", "Paid
 
 # Dummy PaymentInformation Data
 /*
-INSERT INTO paymentInformation VALUES(100000001, 1100428, 1234567890123456, "Bob Jones", "03/25", 123),
-		(100000002, 1295928, 4531379544848231, "Scott Caw", "05/29", 555),
-		(100000003, 1217502, 7982867234560132, "Randy miller", "07/30", 456);
+INSERT INTO paymentInformation VALUES(100000001, 1100428, "1234567890123456", "Bob Jones", "03/25", 123),
+		(100000002, 1295928, "4531379544848231", "Scott Caw", "05/29", 555),
+		(100000003, 1217502, "7982867234560132", "Randy miller", "07/30", 456);
 
 */
 

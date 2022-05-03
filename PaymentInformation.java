@@ -1,34 +1,26 @@
 public class PaymentInformation
 {
-    private int cardNumber;
+    private String cardNumber;
     private String lastFourDigits;
     private String nameOnCard;
     private String expDate;
     private int securityCode;
 
-    public PaymentInformation(int cardNumber, String nameOncard, String expDate, int securityCode)
+    public PaymentInformation(String cardNumber, String nameOncard, String expDate, int securityCode)
     {
         this.cardNumber = cardNumber;
-        this.lastFourDigits = Integer.toString(cardNumber).substring(Integer.toString(cardNumber).length() - 4);
+        this.lastFourDigits = cardNumber.substring(cardNumber.length() - 4);
         this.nameOnCard = nameOncard;
         this.expDate = expDate;
         this.securityCode = securityCode;
     }
 
-    public void setPayment(int cardNumber, String nameOncard, String expDate, int securityCode)
-    {
-        this.cardNumber = cardNumber;
-        this.nameOnCard = nameOncard;
-        this.expDate = expDate;
-        this.securityCode = securityCode;
-    }
-
-    public void setCardName(int cardNumber)
+    public void setCardNumber(String cardNumber)
     {
         this.cardNumber = cardNumber;
     }
 
-    public void setPaymentName(String nameOnCard)
+    public void setCardName(String nameOnCard)
     {
         this.nameOnCard = nameOnCard;
     }
@@ -43,7 +35,7 @@ public class PaymentInformation
         this.securityCode = securityCode;
     }
 
-    public int getCardNumber()
+    public String getCardNumber()
     {
         return cardNumber;
     }

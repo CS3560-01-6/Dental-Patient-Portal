@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -78,6 +79,7 @@ public class HomePage {
     Connection connection = null;
     Patient patient;
     Address address;
+    PaymentInformation paymentInfo;
     ObservableList<Invoice> invoiceObservableList = FXCollections.observableArrayList();
 
     /* Initializes Home Page with default values */
@@ -90,6 +92,7 @@ public class HomePage {
             setPatient(patient);
         }
         setInvoiceList();
+        setPaymentInfo();
         displayPatientProfile();
     }
 
@@ -157,6 +160,10 @@ public class HomePage {
         this.city.setText(address.getCity());
         this.state.setText(address.getState());
         this.zip.setText(Integer.toString(address.getZip()));
+
+        // displays last 4 digits of card information
+        this.lastFourDigits.setText(paymentInfo.getLastFourDigits());
+
     }
 
     /* Initializes Patient with a PatientID */
@@ -186,6 +193,21 @@ public class HomePage {
 
         result.next();
         address = new Address(result.getString("addressLine1"), result.getString("addressLine2"), result.getString("city"), result.getString("state"), Integer.parseInt(result.getString("zip")));
+    }
+
+    /* Initializes Payment Information */
+    public void setPaymentInfo() throws Exception {
+        Handler sqlConnection = new Handler();
+        connection = sqlConnection.connectDB();
+
+        String getPaymentInfo = "SELECT * FROM paymentInformation WHERE patientID = '" + patient.getPatientID() + "'";
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(getPaymentInfo);
+
+
+        result.next();
+        paymentInfo = new PaymentInformation(result.getString("cardNumber"), result.getString("cardHolder"), result.getString("expDate"), Integer.parseInt(result.getString("securityCode")));
     }
 
     /* Custom class to display view button next to list of invoices */
