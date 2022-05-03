@@ -86,12 +86,13 @@ public class HomePage {
         if(patient.getFirstName() != null) { // patient already logged in
             this.patient = patient;
             this.address = patient.getAddress();
+            this.paymentInfo = patient.getPaymentInfo();
         } else { // new patient logging in
             setAddress(patient.getPatientID());
+            setPaymentInfo(patient.getPatientID());
             setPatient(patient);
         }
         setInvoiceList();
-        setPaymentInfo();
         displayPatientProfile();
     }
 
@@ -178,7 +179,7 @@ public class HomePage {
         
         result.next();
         this.patient = new Patient(patient.getPatientID(), result.getString("password"), result.getString("fname"), result.getString("lname"), 
-                            result.getString("dateofbirth"), result.getString("email"), result.getString("phonenumber"), address);
+                            result.getString("dateofbirth"), result.getString("email"), result.getString("phonenumber"), address, paymentInfo);
     }
 
     /* Initializes Address */
@@ -196,15 +197,14 @@ public class HomePage {
     }
 
     /* Initializes Payment Information */
-    public void setPaymentInfo() throws Exception {
+    public void setPaymentInfo(int PatientID) throws Exception {
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB();
 
-        String getPaymentInfo = "SELECT * FROM paymentInformation WHERE patientID = '" + patient.getPatientID() + "'";
+        String getPaymentInfo = "SELECT * FROM paymentInformation WHERE patientID = '" + PatientID + "'";
 
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(getPaymentInfo);
-
 
         result.next();
         paymentInfo = new PaymentInformation(result.getString("cardNumber"), result.getString("cardHolder"), result.getString("expDate"), Integer.parseInt(result.getString("securityCode")));
