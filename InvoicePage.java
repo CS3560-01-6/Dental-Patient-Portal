@@ -1,10 +1,14 @@
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -64,12 +68,25 @@ public class InvoicePage {
     @FXML
     private Label treatmentName;
 
+    Invoice invoice;
     Connection connection = null;
 
     /* Prompts the page/popup for Payment Method. (Functionality of Pay Button) */
     @FXML
-    void payInvoice(ActionEvent event) {
+    void payInvoice(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/PaymentScene.fxml"));
+        Parent root = loader.load();
 
+        PaymentPage paymentPageController = loader.getController();
+        paymentPageController.loadPayment(invoice);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Pay Invoice");
+        stage.setScene(scene);
+        stage.show();
+
+        System.out.println("Payment Page popup launched successfully.");
     }
 
     /* Brings screen back to the list of invoices in home page. (Functionality of return button) */
@@ -82,6 +99,7 @@ public class InvoicePage {
 
     /* Loads invoice information on the invoice page */
     public void loadInvoice(Invoice invoice) throws Exception {
+        this.invoice = invoice;
         invoiceID.setText(Integer.toString(invoice.getInvoiceId()));
         invoicePaymentDueDate.setText((invoice.getPaymentDueDate()));
         invoiceStatus.setText(invoice.getInvoiceStatus());

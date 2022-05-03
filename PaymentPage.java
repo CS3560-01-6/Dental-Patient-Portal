@@ -19,8 +19,17 @@ public class PaymentPage {
     private Button payButton;
 
     @FXML
+    private Text total;
+
+    @FXML
     void payInvoice(ActionEvent event) {
 
+    }
+
+    public void loadPayment(Invoice invoice) {
+        lastFourDigits.setText(invoice.getPatient().getPaymentInfo().getLastFourDigits());
+        expiryDate.setText(invoice.getPatient().getPaymentInfo().getExpDate());
+        total.setText("$" + invoice.getTotalCost());
     }
 
 }
