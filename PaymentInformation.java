@@ -42,6 +42,7 @@ public class PaymentInformation
 
     public String getLastFourDigits() 
     {
+        this.lastFourDigits = cardNumber.substring(cardNumber.length() - 4);
         return lastFourDigits;
     }
 

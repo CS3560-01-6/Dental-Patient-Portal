@@ -111,7 +111,7 @@ public class HomePage {
         Parent root = loader.load();
 
         UpdateProfilePage updateProfileController = loader.getController(); // grants access to class controller and class variables
-        updateProfileController.setPatientInfo(patient, address, paymentInfo);
+        updateProfileController.setPatientInfo(patient, patient.getAddress(), patient.getPaymentInfo());
         updateProfileController.loadPatientInfo();
 
         // Opens Update Profile Window

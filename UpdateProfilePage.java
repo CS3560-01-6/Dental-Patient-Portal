@@ -83,6 +83,7 @@ public class UpdateProfilePage {
     /* Saves any changes made to profile and updates attributes of Patient to new changes in database. */
     @FXML
     void saveProfile(ActionEvent event) throws Exception {
+        errorText.setText("");
 
         // updates patient object
         patient.setFirstName(firstNameInput.getText());
@@ -96,11 +97,16 @@ public class UpdateProfilePage {
         address.setCity(cityInput.getText());
         address.setState(stateInput.getText());
         address.setZip(Integer.parseInt(zipInput.getText()));
+        patient.setAddress(address);
 
         // checks payment information and updates paymentInformation object
-        if(verifyPayment(cardNumberInput.getText(), Integer.parseInt(CVVInput.getText()))) {
-            paymentInfo.setCardNumber(cardNumberInput.getText());
-            paymentInfo.setSecurityCode(Integer.parseInt(CVVInput.getText()));
+        if(verifyPayment(cardNumberInput.getText(), CVVInput.getText())) {
+            if(cardNumberInput.getText().length() != 0) {
+                paymentInfo.setCardNumber(cardNumberInput.getText());
+            }
+            if(CVVInput.getText().length() != 0) {
+                paymentInfo.setSecurityCode(Integer.parseInt(CVVInput.getText()));
+            }
         }
 
         if(cardHolderInput.getText().length() != 0) {
@@ -110,6 +116,7 @@ public class UpdateProfilePage {
         if(expiryDateInput.getText().length() != 0) {
             paymentInfo.setExpDate(expiryDateInput.getText());
         }
+        patient.setPaymentInfo(paymentInfo);
 
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB(); 
@@ -124,7 +131,7 @@ public class UpdateProfilePage {
         
         // query to update payment information values
         String savePaymentInfo = "UPDATE paymentInformation SET cardNumber = '" + paymentInfo.getCardNumber() + "', cardHolder = '" + paymentInfo.getCardName() + "', expDate = '" + 
-                                paymentInfo.getExpDate() + ",' securityCode = '" + paymentInfo.getSecurityCode() + "' WHERE patientID = '" + patient.getPatientID() + "'";
+                                paymentInfo.getExpDate() + "', securityCode = '" + paymentInfo.getSecurityCode() + "' WHERE patientID = '" + patient.getPatientID() + "'";
 
         Statement statement = connection.createStatement();
         statement.executeUpdate(savePatient); // saves any updates made to patient profile to database
@@ -134,11 +141,13 @@ public class UpdateProfilePage {
         App app = new App();
         app.loadHome(patient); // Updates home screen to new values of patient if changes were made
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Save Changes");
-        alert.setHeaderText("Profile Updated Successfully.");
-        alert.show();
-        System.out.println("User Updated Profile.");
+        if(errorText.getText().length() == 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Save Changes");
+            alert.setHeaderText("Profile Updated Successfully.");
+            alert.show();
+            System.out.println("User Updated Profile.");
+        }
     }
 
     /* Patient info is loaded as default on update profile page */
@@ -161,12 +170,12 @@ public class UpdateProfilePage {
         this.paymentInfo = paymentInfo;
     }
 
-    public boolean verifyPayment(String cardNumber, int CVV) {
-        if(cardNumber.length() < 15 && cardNumberInput.getText().length() != 0) {
+    public boolean verifyPayment(String cardNumber, String CVV) {
+        if(cardNumberInput.getText().length() != 0 && cardNumber.length() < 15) {
             errorText.setText("Invalid Card Number.");
             return false;
         }
-        if((CVV < 100 || CVV > 9999) && CVVInput.getText().length() != 0) {
+        if(CVVInput.getText().length() != 0 && (Integer.parseInt(CVV) < 100 || Integer.parseInt(CVV) > 9999)) {
             errorText.setText("Invalid CVV.");
             return false;
         }
