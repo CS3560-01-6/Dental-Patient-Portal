@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -111,7 +110,8 @@ public class HomePage {
         Parent root = loader.load();
 
         UpdateProfilePage updateProfileController = loader.getController(); // grants access to class controller and class variables
-        updateProfileController.loadPatientInfo(patient, address);
+        updateProfileController.setPatientInfo(patient, address, paymentInfo);
+        updateProfileController.loadPatientInfo();
 
         // Opens Update Profile Window
         Scene scene = new Scene(root);

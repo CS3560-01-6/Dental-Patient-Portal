@@ -58,6 +58,7 @@ public class UpdateProfilePage {
 
     Patient patient;
     Address address;
+    PaymentInformation paymentInfo;
     Connection connection = null;
 
     /* Closes Update Profile Page window and does not save any changes if made. */
@@ -115,9 +116,7 @@ public class UpdateProfilePage {
     }
 
     /* Patient info is loaded as default on update profile page */
-    public void loadPatientInfo(Patient patient, Address address) {
-        this.patient = patient;
-        this.address = address;
+    public void loadPatientInfo() {
         firstNameInput.setText(patient.getFirstName());
         lastNameInput.setText(patient.getLastName());
         phoneNumberInput.setText(patient.getPhoneNumber());
@@ -129,4 +128,10 @@ public class UpdateProfilePage {
         zipInput.setText(Integer.toString(address.getZip()));
     }
 
+    /* Patient info is initialized */
+    public void setPatientInfo(Patient patient, Address address, PaymentInformation paymentInfo) {
+        this.patient = patient;
+        this.address = address;
+        this.paymentInfo = paymentInfo;
+    }
 }
