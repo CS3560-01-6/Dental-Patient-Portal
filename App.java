@@ -50,6 +50,6 @@ public class App extends Application {
         Parent root = loader.load();
 
         HomePage homePageController = loader.getController();
-        homePageController.displayInvoice(invoice);;
+        homePageController.viewInvoice(invoice);
     }
 }

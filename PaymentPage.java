@@ -1,4 +1,6 @@
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -37,10 +39,9 @@ public class PaymentPage {
     Invoice invoice;
     Payment payment;
 
+    /* Marks invoice as paid and adds payment */
     @FXML
     void payInvoice(ActionEvent event) throws Exception {
-        Handler mysqlHandler = new Handler();
-        connection = mysqlHandler.connectDB();
 
         int cvv = Integer.parseInt(cvvInput.getText());
 
@@ -53,6 +54,7 @@ public class PaymentPage {
             String datePaid = dtf.format(now).toString();
 
             payment = new Payment(invoice.getTotalCost(), invoice, datePaid.toString(), "Card");
+            invoice.setInvoiceStatus("paid");
 
             addPayment();
 
@@ -78,8 +80,22 @@ public class PaymentPage {
         total.setText("$" + invoice.getTotalCost());
     }
 
-    public void addPayment() {
+    /* Records payment to database */
+    public void addPayment() throws Exception {
+        Handler mysqlHandler = new Handler();
+        connection = mysqlHandler.connectDB();
+        Statement statement = connection.createStatement();
 
+        String markInvoicePaid = "UPDATE invoice SET invoiceStatus = 'Paid' WHERE invoiceID = '" + invoice.getInvoiceId() + "'";
+        statement.executeUpdate(markInvoicePaid);
+
+        String getPaymentInfoID = "SELECT * FROM paymentInformation WHERE patientID = '" + invoice.getPatient().getPatientID();
+        ResultSet result = statement.executeQuery(getPaymentInfoID);
+        result.next();
+        int paymentInfoID = Integer.parseInt(result.getString("paymentInfoID"));
+        int paymentID = (int) (Math.random()*99999)+10000;
+        String addPayment = "INSERT INTO payment VALUES (000" + paymentID + ", " + invoice.getInvoiceId() + ", " + paymentInfoID + ", '" + payment.getDatePaid() + "', " + payment.getAmount() + ", '" + payment.getPaymentType() + "')";
+        statement.executeUpdate(addPayment);
     }
 
 }
