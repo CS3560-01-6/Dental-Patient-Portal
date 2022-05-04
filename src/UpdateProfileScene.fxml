@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UpdateProfilePage">
    <center>
@@ -146,10 +147,21 @@
                                     <Label text="Cardholder:" />
                                     <TextField fx:id="cardHolderInput" GridPane.columnIndex="1" />
                                     <TextField fx:id="cardNumberInput" prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="expiryDateInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="CVVInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="expiryDateInput" promptText="MM/YY" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets right="230.0" />
+                                       </GridPane.margin></TextField>
+                                    <TextField fx:id="CVVInput" prefHeight="25.0" prefWidth="106.0" promptText="CVV" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets right="230.0" />
+                                       </GridPane.margin></TextField>
                                  </children>
                               </GridPane>
+                              <Text fx:id="errorText" fill="#c61010" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="381.13671875">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Text>
                            </children>
                         </VBox>
                      </children>

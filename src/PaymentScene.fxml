@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="342.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PaymentPage">
+   <children>
+      <Button fx:id="payButton" layoutX="103.0" layoutY="143.0" mnemonicParsing="false" onAction="#payInvoice" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #2c7630;" text="Confirm Payment" textFill="WHITE" />
+      <Label layoutX="76.0" layoutY="25.0" text="Card on Profile:" />
+      <Text layoutX="171.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="**** **** ****" />
+      <Label layoutX="76.0" layoutY="50.0" text="Expiry Date:" />
+      <Text fx:id="expiryDate" layoutX="143.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="05/22" />
+      <Label layoutX="194.0" layoutY="50.0" text="CVV:" />
+      <TextField fx:id="cvvInput" layoutX="228.0" layoutY="46.0" prefHeight="25.0" prefWidth="39.0" />
+      <Text layoutX="120.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Text>
+      <Text fx:id="total" layoutX="160.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$75.00">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <Text fx:id="lastFourDigits" layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1234" />
+      <Text fx:id="errorMessage" fill="#c61010" layoutX="83.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="182.0" />
+   </children>
+</AnchorPane>

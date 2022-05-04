@@ -8,8 +8,9 @@ public class Patient
     private int patientID;
     private Address address;
     private String password;
+    private PaymentInformation paymentInfo;
 
-    public Patient(int patientID, String password, String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, Address address) {
+    public Patient(int patientID, String password, String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, Address address, PaymentInformation paymentInfo) {
         this.patientID = patientID;
         this.password = password;
         this.firstName = firstName;
@@ -18,6 +19,7 @@ public class Patient
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.paymentInfo = paymentInfo;
     }
 
     public Patient(int patientID) {
@@ -87,4 +89,13 @@ public class Patient
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public PaymentInformation getPaymentInfo() {
+        return this.paymentInfo;
+    }
+
+    public void setPaymentInfo(PaymentInformation paymentInfo) {
+        this.paymentInfo = paymentInfo;
+    }
+
 }
