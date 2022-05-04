@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
@@ -75,11 +76,24 @@ public class HomePage {
     @FXML
     private Text zip;
 
+    @FXML
+    private TableColumn<Payment, String> datePaidCol;
+
+    @FXML
+    private TableColumn<Payment, String> amountCol;
+
+    @FXML
+    private TableColumn<Payment, String> paymentTypeCol;
+
+    @FXML
+    private TableView<Payment> paymentHistory;
+
     Connection connection = null;
     Patient patient;
     Address address;
     PaymentInformation paymentInfo;
     ObservableList<Invoice> invoiceObservableList = FXCollections.observableArrayList();
+    ObservableList<Payment> paymentObservableList = FXCollections.observableArrayList();
 
     /* Initializes Home Page with default values */
     public void initializeHomePage(Patient patient) throws Exception {
@@ -93,55 +107,8 @@ public class HomePage {
             setPatient(patient);
         }
         setInvoiceList();
+        setPaymentHistory();
         displayPatientProfile();
-    }
-
-    /* Logs user out and returns back to login page */
-    @FXML
-    void logout(ActionEvent event) throws IOException {
-        App app = new App();
-        app.changeScene("LoginScene.fxml"); // returns user to log in screen
-        System.out.println("Patient logged out successfully.");
-    }
-
-    /* Prompts the Update Profile Page. */
-    @FXML
-    void updateProfile(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/UpdateProfileScene.fxml")); // loads UpdateProfileScene.fxml
-        Parent root = loader.load();
-
-        UpdateProfilePage updateProfileController = loader.getController(); // grants access to class controller and class variables
-        updateProfileController.setPatientInfo(patient, patient.getAddress(), patient.getPaymentInfo());
-        updateProfileController.loadPatientInfo();
-
-        // Opens Update Profile Window
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setTitle("Update Profile");
-        stage.setScene(scene);
-        stage.show();
-
-        System.out.println("Update Profile popup launched successfully.");
-    }
-
-    /* Changes scene to invoice information view page */
-    public void displayInvoice(Invoice invoice) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/InvoiceScene.fxml"));
-        Parent root = loader.load();
-        // AnchorPane invoiceView = loader.load();
-
-        InvoicePage invoicePageController = loader.getController();
-        invoicePageController.loadInvoice(invoice);
-
-        // invoicesBorderPane.setCenter(invoiceView);
-
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setTitle("Update Profile");
-        stage.setScene(scene);
-        stage.show();
-
-        System.out.println("Patient viewing Invoice " + invoice.getInvoiceId());
     }
 
     /* Displays default patient information on home page. */
@@ -164,7 +131,51 @@ public class HomePage {
 
         // displays last 4 digits of card information
         this.lastFourDigits.setText(paymentInfo.getLastFourDigits());
+    }
 
+    /* Changes scene to invoice information view page */
+    public void viewInvoice(Invoice invoice) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/InvoiceScene.fxml"));
+        Parent root = loader.load();
+
+        InvoicePage invoicePageController = loader.getController();
+        invoicePageController.loadInvoice(invoice);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Update Profile");
+        stage.setScene(scene);
+        stage.show();
+
+        System.out.println("Patient viewing Invoice " + invoice.getInvoiceId());
+    }
+
+    /* Logs user out and returns back to login page */
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+        App app = new App();
+        app.changeScene("LoginScene.fxml"); // returns user to log in screen
+        System.out.println("Patient logged out successfully.");
+    }
+
+    /* Prompts the Update Profile Page. */
+    @FXML
+    void updateProfile(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/UpdateProfileScene.fxml")); // loads UpdateProfileScene.fxml
+        Parent root = loader.load();
+
+        UpdateProfilePage updateProfileController = loader.getController(); // grants access to class controller and class variables
+        updateProfileController.setPatientInfo(patient, patient.getAddress(), patient.getPaymentInfo());
+        updateProfileController.loadPatientInfo();
+
+        // Opens Update Profile Window
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Update Profile");
+        stage.setScene(scene);
+        stage.show();
+
+        System.out.println("Update Profile popup launched successfully.");
     }
 
     /* Initializes Patient with a PatientID */
@@ -284,5 +295,56 @@ public class HomePage {
         Treatment treatment = new Treatment(Integer.parseInt(result.getString("treatmentID")), result.getString("service"), Double.parseDouble(result.getString("cost")));
 
         return treatment;
+    }
+
+    public void setPaymentHistory() throws Exception {
+        Handler sqlConnection = new Handler();
+        connection = sqlConnection.connectDB();
+        Statement statement = connection.createStatement();
+
+        String getPaymentInfoID = "SELECT * FROM paymentInformation WHERE patientID = '" + patient.getPatientID() + "'";
+        ResultSet result = statement.executeQuery(getPaymentInfoID);
+        result.next();
+
+        int paymentInfoID = Integer.parseInt(result.getString("paymentInfoID"));
+
+        String getPayments = "SELECT * FROM payment WHERE paymentInfoID = '" + paymentInfoID + "'";
+        result = statement.executeQuery(getPayments);
+
+        while(result.next()) {
+            int invoiceID = Integer.parseInt(result.getString("invoiceID"));
+            Double amount = Double.parseDouble(result.getString("amount"));
+            Invoice invoice = getInvoice(invoiceID);
+            String datePaid = result.getString("datePaid");
+            String paymentType = result.getString("paymentType");
+            paymentObservableList.add(new Payment(amount, invoice, datePaid, paymentType));
+        }
+
+        datePaidCol.setCellValueFactory(new PropertyValueFactory<>("datePaid"));
+        amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        paymentTypeCol.setCellValueFactory(new PropertyValueFactory<>("paymentType"));
+
+        paymentHistory.setItems(paymentObservableList);
+    }
+
+    public Invoice getInvoice(int invoiceID) throws Exception {
+        Handler sqlConnection = new Handler();
+        connection = sqlConnection.connectDB();
+        Statement statement = connection.createStatement();
+
+        String getInvoiceInfo = "SELECT * FROM invoice WHERE invoiceID = '" + invoiceID + "'";
+
+        ResultSet result = statement.executeQuery(getInvoiceInfo);
+        result.next();
+
+        int invoiceId = Integer.parseInt(result.getString("invoiceID"));
+        Double totalCost = Double.parseDouble(result.getString("totalCost"));
+        String paymentDueDate = result.getString("paymentDueBy");
+        String invoiceStatus = result.getString("invoiceStatus");
+        Treatment treatment = getTreatment(invoiceId);
+
+        Invoice invoice = new Invoice(invoiceId, totalCost, paymentDueDate, invoiceStatus, patient, treatment);
+
+        return invoice;
     }
 }
