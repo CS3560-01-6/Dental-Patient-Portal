@@ -6,7 +6,9 @@ import java.time.format.DateTimeFormatter;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -70,6 +72,9 @@ public class PaymentPage {
             }
             System.out.println("Patient successfully paid for invoice #" + invoice.getInvoiceId());
         }
+
+        App app = new App();
+        app.loadHome(invoice.getPatient());
     }
 
     /* Initializes Payment Page with Default Payment Method on Profile and Invoice Total */
@@ -89,7 +94,7 @@ public class PaymentPage {
         String markInvoicePaid = "UPDATE invoice SET invoiceStatus = 'Paid' WHERE invoiceID = '" + invoice.getInvoiceId() + "'";
         statement.executeUpdate(markInvoicePaid);
 
-        String getPaymentInfoID = "SELECT * FROM paymentInformation WHERE patientID = '" + invoice.getPatient().getPatientID();
+        String getPaymentInfoID = "SELECT * FROM paymentInformation WHERE patientID = '" + invoice.getPatient().getPatientID() + "'";
         ResultSet result = statement.executeQuery(getPaymentInfoID);
         result.next();
         int paymentInfoID = Integer.parseInt(result.getString("paymentInfoID"));

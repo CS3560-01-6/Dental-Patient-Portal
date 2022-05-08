@@ -1,9 +1,7 @@
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-
 import javafx.collections.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -302,6 +300,15 @@ public class HomePage {
     }
 
     public void setPaymentHistory() throws Exception {
+        paymentObservableList.clear();
+        getPayments();
+        datePaidCol.setCellValueFactory(new PropertyValueFactory<>("datePaid"));
+        amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        paymentTypeCol.setCellValueFactory(new PropertyValueFactory<>("paymentType"));
+        paymentHistory.setItems(paymentObservableList);
+    }
+
+    public void getPayments() throws Exception {
         Handler sqlConnection = new Handler();
         connection = sqlConnection.connectDB();
         Statement statement = connection.createStatement();
@@ -322,12 +329,6 @@ public class HomePage {
             String paymentType = result.getString("paymentType");
             paymentObservableList.add(new Payment(amount, invoice, datePaid, paymentType));
         }
-
-        datePaidCol.setCellValueFactory(new PropertyValueFactory<>("datePaid"));
-        amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        paymentTypeCol.setCellValueFactory(new PropertyValueFactory<>("paymentType"));
-
-        paymentHistory.setItems(paymentObservableList);
     }
 
     public Invoice getInvoice(int invoiceID) throws Exception {
