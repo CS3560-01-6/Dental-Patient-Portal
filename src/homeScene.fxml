@@ -45,7 +45,7 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <bottom>
-                        <Hyperlink fx:id="updateProfileButton" alignment="CENTER" onAction="#updateProfile" text="Update Profile" textFill="#2c7630" BorderPane.alignment="CENTER" />
+                        <Hyperlink fx:id="updateProfileButton" alignment="CENTER" onAction="#updateProfile" text="Update Profile" textFill="#44b249" BorderPane.alignment="CENTER" />
                      </bottom>
                      <top>
                         <Pane prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
@@ -182,6 +182,8 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="0.0" BorderPane.alignment="CENTER">
          <children>
+            <Hyperlink fx:id="deleteAccountButton" onAction="#deleteAccount" prefHeight="23.0" prefWidth="105.0" text="Delete Account" textFill="#2c7630" />
+            <Pane prefHeight="41.0" prefWidth="396.0" />
             <Button fx:id="logoutButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent; -fx-border-color: #2C7630; -fx-border-radius: 3; -fx-background-radius: 3;" styleClass="mainButton" text="Logout" textAlignment="RIGHT" textFill="#2c7630">
                <cursor>
                   <Cursor fx:constant="HAND" />

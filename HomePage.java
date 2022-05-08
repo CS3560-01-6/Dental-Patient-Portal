@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.collections.*;
@@ -75,6 +76,9 @@ public class HomePage {
 
     @FXML
     private Text zip;
+
+    @FXML
+    private Hyperlink deleteAccountButton;
 
     @FXML
     private TableColumn<Payment, String> datePaidCol;
@@ -312,9 +316,8 @@ public class HomePage {
         result = statement.executeQuery(getPayments);
 
         while(result.next()) {
-            int invoiceID = Integer.parseInt(result.getString("invoiceID"));
             Double amount = Double.parseDouble(result.getString("amount"));
-            Invoice invoice = getInvoice(invoiceID);
+            Invoice invoice = getInvoice(Integer.parseInt(result.getString("invoiceID")));
             String datePaid = result.getString("datePaid");
             String paymentType = result.getString("paymentType");
             paymentObservableList.add(new Payment(amount, invoice, datePaid, paymentType));
@@ -347,4 +350,45 @@ public class HomePage {
 
         return invoice;
     }
+
+    @FXML
+    void deleteAccount(ActionEvent event) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Account");
+        alert.setHeaderText("Are you sure you want to delete your account?");
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            Handler sqlConnection = new Handler();
+            connection = sqlConnection.connectDB();
+            Statement statement = connection.createStatement();
+
+            App app = new App();
+            app.changeScene("LoginScene.fxml");
+
+            String getPaymentInfoID = "SELECT * FROM paymentInformation WHERE patientID = '" + patient.getPatientID() + "'";
+            ResultSet result = statement.executeQuery(getPaymentInfoID);
+            result.next();
+
+            int paymentInfoID = Integer.parseInt(result.getString("paymentInfoID"));
+
+            String removePayments = "DELETE FROM payment WHERE paymentInfoID = '" + paymentInfoID + "'";
+            String removePaymentInfo = "DELETE FROM paymentInformation WHERE patientID = '" + patient.getPatientID() + "'";
+            String removeInvoices = "DELETE FROM invoice WHERE patientID = '" + patient.getPatientID() + "'";
+            String removeAddress = "DELETE FROM address WHERE patientID = '" + patient.getPatientID() + "'";
+            String removeAccount = "DELETE FROM patient WHERE patientID = '" + patient.getPatientID() + "'";
+            statement.executeUpdate(removePayments);
+            int[] invoiceIDs = new int[invoiceList.getItems().size()];
+            for(int i = 0; i < invoiceIDs.length; i++) {
+                invoiceIDs[i] = invoiceList.getItems().get(i).getInvoiceId();
+                System.out.println("Invoice " + invoiceIDs[i] + " deleted.");
+                String removeTreatments = "DELETE FROM treatment WHERE invoiceID = '" + invoiceIDs[i] + "'";
+                statement.executeUpdate(removeTreatments);
+            }
+            statement.executeUpdate(removeInvoices);
+            statement.executeUpdate(removePaymentInfo);
+            statement.executeUpdate(removeAddress);
+            statement.executeUpdate(removeAccount);
+            System.out.println("User deleted account.");
+        }
+    }
+
 }
